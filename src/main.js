@@ -3,7 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+import './plugins/element.js'
+import http from "./http";
 
+Vue.prototype.$http = http
 Vue.config.productionTip = false
 
 new Vue({
