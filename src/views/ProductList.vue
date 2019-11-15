@@ -4,7 +4,7 @@
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
       <el-table-column prop="name" label="商品名称"></el-table-column>
-      <el-table-column prop="brand" label="所属品牌"></el-table-column>
+      <el-table-column prop="brand.name" label="所属品牌"></el-table-column>
       <el-table-column fixed="right" label="操作" width="180">
         <template v-slot="scope">
           <el-button
@@ -45,7 +45,7 @@ export default {
             message: '删除成功!'
           }); 
         });
-    }
+    },
   },
   created() {
     this._fetch();

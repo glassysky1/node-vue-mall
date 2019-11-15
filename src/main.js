@@ -9,6 +9,14 @@ import http from "./http";
 Vue.prototype.$http = http
 Vue.config.productionTip = false
 
+
+Vue.mixin({
+  computed:{
+    uploadUrl(){
+      return this.$http.defaults.baseURL + '/upload'
+    }
+  }
+})
 new Vue({
   router,
   store,
