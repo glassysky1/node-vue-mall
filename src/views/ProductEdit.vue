@@ -72,15 +72,34 @@
           </el-form-item>
           <el-form-item label="屏幕材质">
             <el-select v-model="model.parameter.screenMaterial">
-              <el-option v-for="(item,index) in screenMaterials" :key="index" :label="item" :value="item"></el-option>
+              <el-option
+                v-for="(item,index) in screenMaterials"
+                :key="index"
+                :label="item"
+                :value="item"
+              ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="屏幕尺寸">
-          </el-form-item>
+          <el-form-item label="屏幕尺寸"></el-form-item>
         </el-tab-pane>
-        
-        <el-tab-pane label="存储类型" name="storage">
 
+        <el-tab-pane label="存储类型" name="storage">
+          <el-button size="small" @click="model.storages.push({})">
+            <i class="el-icon-plus"></i>添加储存类型
+          </el-button>
+          <el-col v-for="(item,index) in model.storages" :key="index">
+            <el-form-item label="名字">
+              <el-select v-model="item.name">
+                <el-option
+                  v-for="(storageCapacity,index) in storageCapacitis"
+                  :key="index"
+                  :value="storageCapacity"
+                  :label="storageCapacity"
+                ></el-option>
+              </el-select>
+              <el-button size="small" type="danger" @click="model.storages.splice(index,1)">删除</el-button>
+            </el-form-item>
+          </el-col>
         </el-tab-pane>
       </el-tabs>
       <el-form-item style="margin-top:1rem;">
@@ -97,14 +116,21 @@ export default {
       model: {
         parameter: {
           score: 0
-        }
+        },
+        storages: [
+          
+        ]
       },
-      screenMaterials:[
-        'AMOLED',
-        'TFT材质（IPS技术）',
-        'TFT LCD（IPS）'
+      screenMaterials: ["AMOLED", "TFT材质（IPS技术）", "TFT LCD（IPS）"],
+      brands: [],
+      storageCapacitis: [
+        "4GB+64GB",
+        "6GB+64GB",
+        "6GB+128GB",
+        "8GB+128GB",
+        "12GB+256GB"
       ],
-      brands: []
+      preStorages: []
     };
   },
   props: {
@@ -116,9 +142,19 @@ export default {
     async save() {
       let res;
       if (this.id) {
-        res = await this.$http.put(`rest/products/${this.id}`, this.model);
+        //把删除的存储类型id赋值过去
+        let storages = [];
+        for (let storage of this.model.storages) {
+          if (storage._id) {
+            storages.push(storage);
+          }
+        }
+        this.model.deleteStorages = [...this.preStorages].filter(x => [...storages].every(y => y._id !== x._id));
+        console.log(this.model.deleteStorages);
+        
+        res = await this.$http.put(`products/${this.id}`, this.model);
       } else {
-        res = await this.$http.post("rest/products", this.model);
+        res = await this.$http.post("products", this.model);
       }
       this.$router.push("/products/list");
       this.$message({
@@ -127,8 +163,9 @@ export default {
       });
     },
     async _fetch() {
-      const res = await this.$http.get(`rest/products/${this.id}`);
+      const res = await this.$http.get(`products/${this.id}`);
       this.model = res.data;
+      this.preStorages = res.data.storages.slice();
     },
     async _fetchBrand() {
       const res = await this.$http.get(`rest/brands`);
