@@ -2,7 +2,7 @@
   <div>
     <h1>{{id?"编辑":"新建"}}商品</h1>
     <el-form label-width="120px" @submit.native.prevent="save">
-      <el-tabs type="border-card" value="storage">
+      <el-tabs type="border-card" value="parameter">
         <el-tab-pane label="基本信息" name="basic">
           <el-form-item label="所属品牌">
             <el-select v-model="model.brand" filterable>
@@ -64,8 +64,9 @@
     frontCamera: { type: String },
         weight: { type: String }-->
         <el-tab-pane label="参数配置" name="parameter">
+        <el-col :md="10">
           <el-form-item label="评分">
-            <el-input v-model="model.parameter.score"></el-input>
+             <el-rate style="margin-top:.6rem" :max="10" show-score v-model="model.parameter.score"></el-rate>
           </el-form-item>
           <el-form-item label="生产日期">
             <el-date-picker v-model="model.parameter.productionDate" type="date" placeholder="选择日期"></el-date-picker>
@@ -80,26 +81,100 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="屏幕尺寸"></el-form-item>
+          <el-form-item label="屏幕尺寸">
+            <el-input style="width:211px;" v-model="model.parameter.screenSize"></el-input>
+          </el-form-item>
+          <el-form-item label="屏幕分辨率">
+            <el-select filterable  v-model="model.parameter.screenRatio">
+              <el-option v-for="(screenRatioe,index) in screenRatioes" :key="index" :label="screenRatioe" :value="screenRatioes"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="CPU型号">
+            <el-select filterable  v-model="model.parameter.cpuType">
+              <el-option v-for="(cpuType,index) in cpuTypes" :key="index" :label="cpuType.name" :value="cpuType.name"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="RAM容量">
+            <el-select filterable  v-model="model.parameter.ramSize">
+              <el-option v-for="(ramSize,index) in ramSizes" :key="index" :label="ramSize" :value="ramSize"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="RAM存储类型">
+            <el-select filterable  v-model="model.parameter.ramType">
+              <el-option v-for="(ramType,index) in ramTypes" :key="index" :label="ramType" :value="ramType"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="ROM容量">
+            <el-select filterable  v-model="model.parameter.romSize">
+              <el-option v-for="(romSize,index) in romSizes" :key="index" :label="romSize" :value="romSize"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="ROM存储类型">
+            <el-select filterable  v-model="model.parameter.romType">
+              <el-option v-for="(romType,index) in romTypes" :key="index" :label="romType" :value="romType"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="电池容量(mh)">
+            <el-input style="width:211px" v-model="model.parameter.batteryCapacity"></el-input>
+          </el-form-item>
+          <el-form-item label="重量(g)">
+            <el-input style="width:211px" v-model="model.parameter.weight"></el-input>
+          </el-form-item>
+          <el-form-item label="前置摄像头">
+            <el-input  v-model="model.parameter.frontCamera"></el-input>
+          </el-form-item>
+          <el-form-item label="后置摄像头">
+            <el-input  v-model="model.parameter.rearCamera"></el-input>
+          </el-form-item>
+
+        </el-col>
         </el-tab-pane>
 
-        <el-tab-pane label="存储类型" name="storage">
+        <el-tab-pane label="存储容量及详细配置" name="storage">
           <el-button size="small" @click="model.storages.push({})">
-            <i class="el-icon-plus"></i>添加储存类型
+            <i class="el-icon-plus"></i>添加存储容量
           </el-button>
-          <el-col v-for="(item,index) in model.storages" :key="index">
-            <el-form-item label="名字">
-              <el-select v-model="item.name">
-                <el-option
-                  v-for="(storageCapacity,index) in storageCapacitis"
-                  :key="index"
-                  :value="storageCapacity"
-                  :label="storageCapacity"
-                ></el-option>
-              </el-select>
-              <el-button size="small" type="danger" @click="model.storages.splice(index,1)">删除</el-button>
-            </el-form-item>
-          </el-col>
+          <el-row type="flex" style="flex-wrap:wrap">
+            <el-col
+              style="margin-top:1rem;"
+              :md="12"
+              v-for="(storage,index) in model.storages"
+              :key="index"
+            >
+              <el-form-item label="存储容量">
+                <el-form-item>
+                  <el-select v-model="storage.name">
+                    <el-option
+                      v-for="(storageCapacity,index) in storageCapacitis"
+                      :key="index"
+                      :value="storageCapacity"
+                      :label="storageCapacity"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-form-item>
+              <el-form-item label="原价">
+                <el-input v-model="storage.oldPrice"></el-input>
+              </el-form-item>
+              <el-form-item label="现价">
+                <el-input v-model="storage.nowPrice"></el-input>
+              </el-form-item>
+              <el-form-item label="库存">
+                <el-input v-model="storage.stock"></el-input>
+              </el-form-item>
+              <el-form-item label="销量">
+                <el-input v-model="storage.salesVolume"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button
+                  size="small"
+                  style="margin-top:1rem;"
+                  type="danger"
+                  @click="model.storages.splice(index,1)"
+                >删除</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-tab-pane>
       </el-tabs>
       <el-form-item style="margin-top:1rem;">
@@ -118,17 +193,93 @@ export default {
           score: 0
         },
         storages: [
-          
+          {
+            colors: []
+          }
         ]
       },
-      screenMaterials: ["AMOLED", "TFT材质（IPS技术）", "TFT LCD（IPS）"],
+      screenMaterials: [ "TFT LCD（IPS）","AMOLED", "TFT材质（IPS技术）",],
       brands: [],
+      screenRatioes:[
+        '1280×720',
+        '1920×1080',
+        '2256x1080',
+        '2400x1080',
+        '2560×1440',
+        '2400x1176',
+        '3840×2160'
+        ],
       storageCapacitis: [
         "4GB+64GB",
         "6GB+64GB",
         "6GB+128GB",
         "8GB+128GB",
         "12GB+256GB"
+      ],
+      cpuTypes:[
+        {
+          name:'麒麟990',
+          level:16
+        },
+        {
+          name:'骁龙855 Plus',
+          level:15
+        },
+        {
+          name:'骁龙855',
+          level:14
+        },
+        
+        {
+          name:'Exynos 9820',
+          level:13
+        },
+        {
+          name:'麒麟980',
+          level:12
+        },
+        {
+          name:'骁龙845',
+          level:12
+        },
+        {
+          name:'Exynos 9810	',
+          level:12
+        },
+        
+        {
+          name:'麒麟810	',
+          level:11
+        },
+        {
+          name:'骁龙835(MSM8998)',
+          level:10
+        },
+        {
+          name:'骁龙730',
+          level:10
+        },
+
+      ],
+      ramSizes:[
+        '3GB/4GB',
+        '4GB/6GB',
+        '6GB/8GB',
+        '6GB/8GB/12GB',
+      ],
+      ramTypes:[
+        'LPDDR3',
+        'LPDDR4',
+        'LPDDR4X'
+      ],
+      romSizes:[
+        '32GB/64GB',
+        '64GB/128GB',
+        '64GB/128GB/256GB'
+      ],
+      romTypes:[
+        'UFS 2.1',
+        'UFS 3.0'
       ],
       preStorages: []
     };
@@ -149,9 +300,11 @@ export default {
             storages.push(storage);
           }
         }
-        this.model.deleteStorages = [...this.preStorages].filter(x => [...storages].every(y => y._id !== x._id));
+        this.model.deleteStorages = [...this.preStorages].filter(x =>
+          [...storages].every(y => y._id !== x._id)
+        );
         console.log(this.model.deleteStorages);
-        
+
         res = await this.$http.put(`products/${this.id}`, this.model);
       } else {
         res = await this.$http.post("products", this.model);
