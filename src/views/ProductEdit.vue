@@ -14,14 +14,11 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="商品名称">
+          <el-form-item label="商品名">
             <el-input v-model="model.name"></el-input>
           </el-form-item>
           <el-form-item label="副标题">
             <el-input v-model="model.subtitle"></el-input>
-          </el-form-item>
-          <el-form-item label="详情">
-            <el-input v-model="model.detail"></el-input>
           </el-form-item>
           <el-form-item label="封面图片">
             <!-- 好厉害的感觉 -->
@@ -158,44 +155,43 @@
             size="small"
             @click="model.storages ? model.storages.push({}) : $set(model,'storages',[{}])"
           >
-            <i class="el-icon-plus"></i>添加存储容量
+            <i class="el-icon-plus"></i>添加存储容量及价格
           </el-button>
-          <el-row type="flex" style="flex-wrap:wrap">
-            <el-col style="margin-top:1rem;" v-for="(storage,index) in model.storages" :key="index">
+          <el-row>
+            <el-col
+              style="border-bottom:1px solid #DCDFE6; margin-top:1rem;"
+              v-for="(storage,index) in model.storages"
+              :key="index"
+            >
               <el-form-item label="存储容量">
-                <el-form-item>
-                  <el-select v-model="storage.name">
-                    <el-option
-                      v-for="(storageCapacity,index) in storageCapacitis"
-                      :key="index"
-                      :value="storageCapacity"
-                      :label="storageCapacity"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item>
-                  <el-button
-                    size="small"
-                    @click=" storage.colors ? storage.colors.push({}) : $set(storage,'colors',[{}])"
-                  >
-                    <i class="el-icon-plus"></i>添加机身颜色及详细配置
-                  </el-button>
-                </el-form-item>
-                <el-row type="flex" style="flex-wrap:wrap">
-                  <el-col
-                    :md="8"
-                    style="margin-top:1rem;"
-                    v-for="(color,index) in storage.colors"
+                <el-select v-model="storage.name">
+                  <el-option
+                    v-for="(storageCapacity,index) in storageCapacitis"
                     :key="index"
-                  >
+                    :value="storageCapacity"
+                    :label="storageCapacity"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="原价(元)">
+                <el-input style="width:211px" v-model="storage.oldPrice"></el-input>
+              </el-form-item>
+              <el-form-item label="现价(元)">
+                <el-input style="width:211px" v-model="storage.nowPrice"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button
+                  size="small"
+                  @click=" storage.colors ? storage.colors.push({}) : $set(storage,'colors',[{}])"
+                >
+                  <i class="el-icon-plus"></i>添加机身颜色及库存销量
+                </el-button>
+              </el-form-item>
+              <el-form-item>
+                <el-row type="flex" style="flex-wrap:wrap">
+                  <el-col :md="8" v-for="(color,index) in storage.colors" :key="index">
                     <el-form-item label="机身颜色">
                       <el-input v-model="color.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="原价(元)">
-                      <el-input v-model="color.oldPrice"></el-input>
-                    </el-form-item>
-                    <el-form-item label="现价(元)">
-                      <el-input v-model="color.nowPrice"></el-input>
                     </el-form-item>
                     <el-form-item label="库存">
                       <el-input v-model="color.stock"></el-input>
@@ -257,8 +253,10 @@ export default {
         "1920×1080",
         "2256x1080",
         "2400x1080",
+        "2340x1080",
         "2560×1440",
         "2400x1176",
+        '3040x1440',
         "3840×2160"
       ],
       storageCapacitis: [
@@ -266,7 +264,9 @@ export default {
         "6GB+64GB",
         "6GB+128GB",
         "8GB+128GB",
-        "12GB+256GB"
+        "8GB+256GB",
+        "12GB+256GB",
+        "12GB+512GB"
       ],
       cpuTypes: [
         {
@@ -331,7 +331,7 @@ export default {
       } else {
         res = await this.$http.post("rest/products", this.model);
       }
-      this.$router.push("/products/list");
+      // this.$router.push("/products/list");
       this.$message({
         type: "success",
         message: "保存成功"

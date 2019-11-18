@@ -4,7 +4,7 @@
       <el-menu router :default-openeds="['1']" unique-opened :default-active="$route.path">
         <el-submenu index="1" >
           <template slot="title">
-            <i class="el-icon-message"></i>内容管理
+            <i class="el-icon-message"></i>商品管理
           </template>
           <el-menu-item-group>
             <template slot="title">品牌管理</template>
@@ -12,9 +12,34 @@
             <el-menu-item index="/brands/list">品牌列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
-            <template slot="title">商品管理</template>
+            <template slot="title">商品</template>
             <el-menu-item index="/products/create">新建商品</el-menu-item>
             <el-menu-item index="/products/list">商品列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">销量与库存</template>
+            <el-menu-item index="/sales_volumes/list">销量</el-menu-item>
+            <el-menu-item index="/stocks/list">库存</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="2" >
+          <template slot="title">
+            <i class="el-icon-message"></i>运营管理
+          </template>
+          <el-menu-item-group>
+            <template slot="title">广告位管理</template>
+            <el-menu-item index="/ads/create">新建广告位</el-menu-item>
+            <el-menu-item index="/ads/list">广告位列表</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="3" >
+          <template slot="title">
+            <i class="el-icon-message"></i>系统设置
+          </template>
+          <el-menu-item-group>
+            <template slot="title">管理员</template>
+            <el-menu-item index="/ads/create">新建管理员</el-menu-item>
+            <el-menu-item index="/ads/list">管理员列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

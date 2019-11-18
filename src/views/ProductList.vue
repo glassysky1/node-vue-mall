@@ -1,11 +1,14 @@
 <template>
   <div>
     <h1>品牌列表</h1>
-    <el-table :data="items">
+    <el-table :data="items.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
       <el-table-column prop="name" label="商品名称"></el-table-column>
       <el-table-column prop="brand.name" label="所属品牌"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="180">
+      <el-table-column align="right">
+        <template #header v-slot="scope">
+          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
+        </template>
         <template v-slot="scope">
           <el-button
             type="primary"
@@ -23,7 +26,8 @@
 export default {
   data() {
     return {
-      items: []
+      items: [],
+      search: ""
     };
   },
   methods: {
@@ -38,14 +42,14 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(async () => {
-          const res = await  this.$http.delete(`rest/products/${row._id}`)
-          this._fetch()
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          }); 
+        const res = await this.$http.delete(`rest/products/${row._id}`);
+        this._fetch();
+        this.$message({
+          type: "success",
+          message: "删除成功!"
         });
-    },
+      });
+    }
   },
   created() {
     this._fetch();

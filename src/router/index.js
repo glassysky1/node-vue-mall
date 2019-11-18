@@ -3,8 +3,12 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import BrandEdit from "../views/BrandEdit.vue";
 import BrandList from "../views/BrandList.vue";
+import AdEdit from "../views/AdEdit.vue";
+import AdList from "../views/AdList.vue";
 import ProductEdit from "../views/ProductEdit.vue";
 import ProductList from "../views/ProductList.vue";
+import SalesVolumeList from "../views/SalesVolumeList.vue";
+import StockList from "../views/StockList.vue";
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,6 +42,27 @@ const routes = [
       {
         path:'/products/list',
         component:ProductList
+      },
+      {
+        path:'/ads/create',
+        component:AdEdit
+      },
+      {
+        path:'/ads/edit/:id',
+        component:AdEdit,
+        props:true
+      },
+      {
+        path:'/ads/list',
+        component:AdList
+      },
+      {
+        path:'/stocks/list',
+        component:StockList
+      },
+      {
+        path:'/sales_volumes/list',
+        component:SalesVolumeList
       },
 
     ]
