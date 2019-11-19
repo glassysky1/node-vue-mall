@@ -256,7 +256,7 @@ export default {
         "2340x1080",
         "2560×1440",
         "2400x1176",
-        '3040x1440',
+        "3040x1440",
         "3840×2160"
       ],
       storageCapacitis: [
@@ -330,8 +330,8 @@ export default {
         res = await this.$http.put(`rest/products/${this.id}`, this.model);
       } else {
         res = await this.$http.post("rest/products", this.model);
+        this.$router.push("/products/list");
       }
-      // this.$router.push("/products/list");
       this.$message({
         type: "success",
         message: "保存成功"

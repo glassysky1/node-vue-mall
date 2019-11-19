@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100vh;">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-menu router :default-openeds="['1']" unique-opened :default-active="$route.path">
+      <el-menu router :default-openeds="['3']" unique-opened :default-active="$route.path">
         <el-submenu index="1" >
           <template slot="title">
             <i class="el-icon-message"></i>商品管理
@@ -38,8 +38,8 @@
           </template>
           <el-menu-item-group>
             <template slot="title">管理员</template>
-            <el-menu-item index="/ads/create">新建管理员</el-menu-item>
-            <el-menu-item index="/ads/list">管理员列表</el-menu-item>
+            <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
+            <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

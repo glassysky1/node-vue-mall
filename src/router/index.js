@@ -7,7 +7,10 @@ import AdEdit from "../views/AdEdit.vue";
 import AdList from "../views/AdList.vue";
 import ProductEdit from "../views/ProductEdit.vue";
 import ProductList from "../views/ProductList.vue";
+import AdminUserEdit from "../views/AdminUserEdit.vue";
+import AdminUserList from "../views/AdminUserList.vue";
 import SalesVolumeList from "../views/SalesVolumeList.vue";
+import Login from "../views/Login.vue";
 import StockList from "../views/StockList.vue";
 Vue.use(VueRouter)
 
@@ -64,8 +67,25 @@ const routes = [
         path:'/sales_volumes/list',
         component:SalesVolumeList
       },
+      {
+        path: '/admin_users/create',
+        component: AdminUserEdit
+      },
+      {
+        path: '/admin_users/edit/:id',
+        component: AdminUserEdit,
+        props: true //把id参数注入到ItemEdit页面里面
+      },
+      {
+        path: '/admin_users/list',
+        component: AdminUserList
+      },
 
-    ]
+    ],
+  },
+  {
+    path: '/login',
+    component:Login
   }
 ]
 
