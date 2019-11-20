@@ -5,7 +5,7 @@
         <ul class="fr">
           <li>
             <a style="margin-right:2px;">你好,请登录&nbsp;</a>
-            <a class="col-red">免费注册</a>
+            <a class="col-red" @click="$router.push('/register')">免费注册</a>
           </li>
           <li v-show="false">用户</li>
           <li class="space"></li>
