@@ -265,6 +265,7 @@ export default {
         "6GB+128GB",
         "8GB+128GB",
         "8GB+256GB",
+        "8GB+512GB",
         "12GB+256GB",
         "12GB+512GB"
       ],
@@ -312,9 +313,9 @@ export default {
           level: 10
         }
       ],
-      ramSizes: ["3GB/4GB", "4GB/6GB", "6GB/8GB", "6GB/8GB/12GB"],
+      ramSizes: ["4GB", "6GB", "8GB","10GB", "12GB"],
       ramTypes: ["LPDDR3", "LPDDR4", "LPDDR4X"],
-      romSizes: ["32GB/64GB", "64GB/128GB", "64GB/128GB/256GB"],
+      romSizes: ["64GB/128GB", "128GB/256GB", "128GB/256GB/512GB", "256GB/512GB"],
       romTypes: ["UFS 2.1", "UFS 3.0"]
     };
   },
