@@ -79,7 +79,7 @@
       <slot></slot>
     </main>
     <footer class="footer">
-      <h3 class="title">make by 村头大白鹅</h3>
+      <h3 class="title">村头大白鹅</h3>
     </footer>
   </div>
 </template>
@@ -129,8 +129,6 @@ export default {
 
     async _fetchBrands() {
       const res = await this.$http.get("brandList");
-      console.log(res);
-
       this.brandList = res.data;
     }
   },
