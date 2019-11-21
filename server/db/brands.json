@@ -1,0 +1,25 @@
+{ 
+    "_id" : ObjectId("5dca2148ab9393a5e0feeb12"), 
+    "name" : "华为 ", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dca32bf47b5b9becc02ba56"), 
+    "name" : "小米", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dccadfadc08e52fec69b30f"), 
+    "name" : "锤子", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd20d5335f41e63c0a09b70"), 
+    "name" : "三星", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd3474798052b4004f6c9d1"), 
+    "name" : "Redmi", 
+    "__v" : NumberInt(0)
+}

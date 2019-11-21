@@ -1,0 +1,49 @@
+{ 
+    "_id" : ObjectId("5dcff79f7c26a44f79c87877"), 
+    "colors" : [
+
+    ], 
+    "name" : "6GB+64GB", 
+    "__v" : NumberInt(0), 
+    "nowPrice" : NumberInt(222)
+}
+{ 
+    "_id" : ObjectId("5dd0c340da4a163e80a93ccd"), 
+    "name" : "6GB+128GB", 
+    "oldPrice" : NumberInt(999), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd0c340da4a163e80a93cce"), 
+    "name" : "6GB+128GB", 
+    "oldPrice" : NumberInt(999), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd148970bd97e47d46ad689"), 
+    "tags" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd148f8b2c1d50968ac934b"), 
+    "tags" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd14a6c78e793176cfc63a7"), 
+    "tags" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd14a8f25147d097c0516b5"), 
+    "tags" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}

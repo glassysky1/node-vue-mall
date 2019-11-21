@@ -4,7 +4,7 @@
       <div class="w">
         <div class="logo">
           <img src="../assets/logo.jpg" height="120px" width="120" alt />
-          <span class="text">欢迎注册</span>
+          <span class="text">欢迎登陆</span>
         </div>
         <el-card class="card">
           <el-form
@@ -20,11 +20,8 @@
             <el-form-item label="密码" prop="pwd">
               <el-input v-model="ruleForm.pwd" type="password"></el-input>
             </el-form-item>
-            <el-form-item label="确认密码" prop="cpwd">
-              <el-input v-model="ruleForm.cpwd" type="password"></el-input>
-            </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="register">注册</el-button>
+              <el-button type="primary" @click="login">登陆</el-button>
               <div class="error">{{error}}</div>
             </el-form-item>
           </el-form>
@@ -56,42 +53,12 @@ export default {
             type: "string",
             message: "请输入用户名",
             trigger: "blur"
-          },
-          {
-            validator: (rule, value, callback) => {
-              for (const username of this.usernames) {
-                if (this.ruleForm.name === username) {
-                  callback(new Error("用户名已存在"));
-                }else{
-                  callback()
-                }
-              }
-            }
           }
         ],
         pwd: [
           {
             required: true,
             message: "创建密码",
-            trigger: "blur"
-          }
-        ],
-        cpwd: [
-          {
-            required: true,
-            message: "确认密码",
-            trigger: "blur"
-          },
-          {
-            validator: (rule, value, callback) => {
-              if (value === "") {
-                callback(new Error("请再次输入密码"));
-              } else if (value !== this.ruleForm.pwd) {
-                callback(new Error("两次输入密码不一致"));
-              } else {
-                callback();
-              }
-            },
             trigger: "blur"
           }
         ]
@@ -102,13 +69,11 @@ export default {
     MFooter
   },
   methods: {
-    register() {
+    login() {
       //验证整张表是否通过
 
       this.$refs["ruleForm"].validate(async valid => {
         if (valid) {
-          console.log(1);
-
           let model = {
             username: this.ruleForm.name,
             password: this.ruleForm.pwd
@@ -121,17 +86,7 @@ export default {
           });
         }
       });
-    },
-    async findUser() {
-      const res = await this.$http.get("rest/web_users");
-
-      this.usernames = res.data.map(user => {
-        return user.username;
-      });
     }
-  },
-  created() {
-    this.findUser();
   }
 };
 </script>

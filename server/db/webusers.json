@@ -1,0 +1,18 @@
+{ 
+    "_id" : ObjectId("5dd53fccd327dc5324b445f0"), 
+    "username" : "xiaoyue", 
+    "password" : "$2a$10$Lr7fKfgYIiobsWP0luxHt.I.RYZPKSc6XF3dj0jJB.IBN9c6vLOyK", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd5fc0d0a3e992dfc4cdb9d"), 
+    "username" : "xiaoyue1", 
+    "password" : "$2a$10$BwXbQ3JE0odiL26Krvnhi.sgwWoHT5KPuCODD20Fs0ywRNDUPCJnu", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd6014ad7d93a574405a992"), 
+    "username" : "xiaoyue2", 
+    "password" : "$2a$10$Bp1u23rtOoWMjIsKTaVOwuF2qkgxOaGz2HMhqMtCWGuligG1cH6qK", 
+    "__v" : NumberInt(0)
+}

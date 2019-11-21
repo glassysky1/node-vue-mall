@@ -1,0 +1,533 @@
+{ 
+    "_id" : ObjectId("5dd163849e51cb6f1867b1d4"), 
+    "parameter" : {
+        "score" : NumberInt(6), 
+        "productionDate" : "2019-11-02T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.47", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "骁龙730", 
+        "ramSize" : "6GB/8GB", 
+        "ramType" : "LPDDR4X", 
+        "romSize" : "64GB/128GB", 
+        "romType" : "UFS 2.1", 
+        "batteryCapacity" : "5260", 
+        "weight" : "208", 
+        "rearCamera" : "1 亿像素超清主摄：1/1.33\"感光元件，1.6μm4合1超大像素，七片式镜头，四轴光学防抖", 
+        "frontCamera" : "前置镜头：1.6μm 4合1超大像素"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5dd20392638ebd18686daff2"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd20392638ebd18686daff5"), 
+                    "name" : "暗夜魅影", 
+                    "stock" : NumberInt(999), 
+                    "salesVolume" : NumberInt(666)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20392638ebd18686daff4"), 
+                    "name" : "魔法绿镜", 
+                    "stock" : NumberInt(555), 
+                    "salesVolume" : NumberInt(333)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20392638ebd18686daff3"), 
+                    "name" : "冰雪极光", 
+                    "stock" : NumberInt(555), 
+                    "salesVolume" : NumberInt(335)
+                }
+            ], 
+            "name" : "6GB+128GB", 
+            "oldPrice" : NumberInt(2799), 
+            "nowPrice" : NumberInt(2799)
+        }, 
+        {
+            "_id" : ObjectId("5dd20392638ebd18686dafee"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd20392638ebd18686daff1"), 
+                    "name" : "暗夜魅影", 
+                    "stock" : NumberInt(4546), 
+                    "salesVolume" : NumberInt(645)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20392638ebd18686daff0"), 
+                    "name" : "魔法绿镜", 
+                    "stock" : NumberInt(2454), 
+                    "salesVolume" : NumberInt(1215)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20392638ebd18686dafef"), 
+                    "name" : "冰雪极光", 
+                    "stock" : NumberInt(598), 
+                    "salesVolume" : NumberInt(5456)
+                }
+            ], 
+            "name" : "8GB+128GB", 
+            "oldPrice" : NumberInt(3099), 
+            "nowPrice" : NumberInt(3099)
+        }, 
+        {
+            "_id" : ObjectId("5dd20424638ebd18686daff6"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd20424638ebd18686daff9"), 
+                    "name" : "暗夜魅影", 
+                    "stock" : NumberInt(4515), 
+                    "salesVolume" : NumberInt(5656)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20424638ebd18686daff8"), 
+                    "name" : "魔法绿镜", 
+                    "stock" : NumberInt(5455), 
+                    "salesVolume" : NumberInt(2455)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20424638ebd18686daff7"), 
+                    "name" : "冰雪极光", 
+                    "stock" : NumberInt(0), 
+                    "salesVolume" : NumberInt(4545)
+                }
+            ], 
+            "name" : "8GB+256GB", 
+            "oldPrice" : NumberInt(3499), 
+            "nowPrice" : NumberInt(3499)
+        }
+    ], 
+    "brand" : ObjectId("5dca32bf47b5b9becc02ba56"), 
+    "subtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+    "detail" : "发的发 ", 
+    "coverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+    "detailImage" : "http://localhost:3000/uploads/dec46209f7a66968148e23d283d81e53", 
+    "createdAt" : ISODate("2019-11-17T15:13:08.204+0000"), 
+    "updatedAt" : ISODate("2019-11-18T03:50:23.103+0000"), 
+    "__v" : NumberInt(0), 
+    "title" : "小米CC9 Pro", 
+    "name" : "小米 CC9 Pro"
+}
+{ 
+    "_id" : ObjectId("5dd20bba35f41e63c0a09b54"), 
+    "parameter" : {
+        "score" : NumberInt(7), 
+        "productionDate" : "2019-09-10T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.39", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "骁龙855 Plus", 
+        "ramSize" : "6GB/8GB/12GB", 
+        "ramType" : "LPDDR4", 
+        "romSize" : "64GB/128GB/256GB", 
+        "romType" : "UFS 3.0", 
+        "batteryCapacity" : "4000", 
+        "weight" : "196", 
+        "frontCamera" : "4800万索尼主摄像头： 0.8μm，1/2\"感光面积，FOV 79° AF，闭环马达，支持4in1(12MP，1.6μm)", 
+        "rearCamera" : "1200万人像镜头： 2倍光学变焦，1.0μm，1/3.6”感光面积，FOV 43.6°，AF，闭环马达 1600万超广角+微距镜头： 1.0μm，1/3\"感光面积，FOV 117°超广角 AF，闭环马达，4cm微距"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5dd20bba35f41e63c0a09b55"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd20bba35f41e63c0a09b56"), 
+                    "name" : "梦之白", 
+                    "stock" : NumberInt(2556), 
+                    "salesVolume" : NumberInt(2326)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20d4135f41e63c0a09b6e"), 
+                    "name" : "钛银黑", 
+                    "stock" : NumberInt(5415), 
+                    "salesVolume" : NumberInt(1515)
+                }
+            ], 
+            "name" : "8GB+256GB", 
+            "oldPrice" : NumberInt(3799), 
+            "nowPrice" : NumberInt(3799)
+        }, 
+        {
+            "_id" : ObjectId("5dd20d4135f41e63c0a09b6a"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd20d4135f41e63c0a09b6c"), 
+                    "name" : "梦之白", 
+                    "stock" : NumberInt(656), 
+                    "salesVolume" : NumberInt(656)
+                }, 
+                {
+                    "_id" : ObjectId("5dd20d4135f41e63c0a09b6b"), 
+                    "name" : "钛银黑", 
+                    "stock" : NumberInt(4545), 
+                    "salesVolume" : NumberInt(236)
+                }
+            ], 
+            "name" : "12GB+256GB", 
+            "oldPrice" : NumberInt(4099), 
+            "nowPrice" : NumberInt(4099)
+        }
+    ], 
+    "brand" : ObjectId("5dca32bf47b5b9becc02ba56"), 
+    "name" : "小米9 Pro 5G", 
+    "subtitle" : "骁龙855Plus 30W无线闪充 双卡全网通 全面屏拍照智能新品游戏手机", 
+    "coverImage" : "http://localhost:3000/uploads/03737d112410955dbc71855e3a39568b", 
+    "detailImage" : "http://localhost:3000/uploads/46b2609626857c7bfb769170dd0fdc13", 
+    "createdAt" : ISODate("2019-11-18T03:10:50.112+0000"), 
+    "updatedAt" : ISODate("2019-11-20T03:09:32.932+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd20e0835f41e63c0a09b83"), 
+    "parameter" : {
+        "score" : NumberInt(8), 
+        "productionDate" : "2019-11-17T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.8", 
+        "screenRatio" : "3040x1440", 
+        "cpuType" : "骁龙855 Plus", 
+        "ramSize" : "6GB/8GB/12GB", 
+        "ramType" : "LPDDR4X", 
+        "romSize" : "64GB/128GB/256GB", 
+        "romType" : "UFS 3.0", 
+        "batteryCapacity" : "4300", 
+        "weight" : "198", 
+        "frontCamera" : "1200万像素广角镜头+1200万像素长焦镜头+1600万像素超广角镜头+3D景深摄像头", 
+        "rearCamera" : "1000万像素"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5dd20e0835f41e63c0a09b84"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd20e0835f41e63c0a09b85"), 
+                    "name" : "蜜丝白", 
+                    "stock" : NumberInt(12), 
+                    "salesVolume" : NumberInt(10000)
+                }, 
+                {
+                    "_id" : ObjectId("5dd2106b35f41e63c0a09b8a"), 
+                    "name" : "麦昆黑", 
+                    "stock" : NumberInt(30000), 
+                    "salesVolume" : NumberInt(23)
+                }, 
+                {
+                    "_id" : ObjectId("5dd2106b35f41e63c0a09b89"), 
+                    "name" : "莫奈彩", 
+                    "stock" : NumberInt(56), 
+                    "salesVolume" : NumberInt(65)
+                }
+            ], 
+            "name" : "12GB+256GB", 
+            "oldPrice" : NumberInt(7999), 
+            "nowPrice" : NumberInt(7999)
+        }
+    ], 
+    "brand" : ObjectId("5dd20d5335f41e63c0a09b70"), 
+    "name" : "三星 Galaxy Note10+", 
+    "subtitle" : "5G手机 骁龙855 智能S Pen 双卡双待 游戏手机", 
+    "coverImage" : "http://localhost:3000/uploads/9c80850bae0315185acf1ed941e0283f", 
+    "detailImage" : "http://localhost:3000/uploads/5501595303d2ed24094fcc7b07505d73", 
+    "createdAt" : ISODate("2019-11-18T03:20:40.816+0000"), 
+    "updatedAt" : ISODate("2019-11-18T09:01:23.492+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd33f9f98052b4004f6c9bb"), 
+    "parameter" : {
+        "score" : NumberInt(7), 
+        "productionDate" : "2019-08-28T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.53", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "骁龙730", 
+        "ramSize" : "6GB/8GB", 
+        "ramType" : "LPDDR4", 
+        "romSize" : "64GB/128GB", 
+        "romType" : "UFS 2.1", 
+        "batteryCapacity" : "4500", 
+        "weight" : "199.8", 
+        "rearCamera" : "6400万像素主摄像头+800万像素超广角镜头+200万像素微距镜头+200万像素景深镜头", 
+        "frontCamera" : "2000万像素"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5dd33f9f98052b4004f6c9bc"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd33f9f98052b4004f6c9bd"), 
+                    "name" : "冰翡翠", 
+                    "stock" : NumberInt(2353), 
+                    "salesVolume" : NumberInt(2326)
+                }, 
+                {
+                    "_id" : ObjectId("5dd3473198052b4004f6c9cf"), 
+                    "name" : "电光灰", 
+                    "stock" : NumberInt(1211), 
+                    "salesVolume" : NumberInt(1221)
+                }, 
+                {
+                    "_id" : ObjectId("5dd3473198052b4004f6c9ce"), 
+                    "name" : "贝母白", 
+                    "stock" : NumberInt(14513), 
+                    "salesVolume" : NumberInt(12351)
+                }
+            ], 
+            "name" : "6GB+64GB", 
+            "oldPrice" : NumberInt(1399), 
+            "nowPrice" : NumberInt(1299)
+        }, 
+        {
+            "_id" : ObjectId("5dd3473198052b4004f6c9c9"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd3473198052b4004f6c9cc"), 
+                    "name" : "冰翡翠", 
+                    "stock" : NumberInt(2652), 
+                    "salesVolume" : NumberInt(1533)
+                }, 
+                {
+                    "_id" : ObjectId("5dd3473198052b4004f6c9cb"), 
+                    "name" : "电光灰", 
+                    "stock" : NumberInt(2123), 
+                    "salesVolume" : NumberInt(1231)
+                }, 
+                {
+                    "_id" : ObjectId("5dd3473198052b4004f6c9ca"), 
+                    "name" : "贝母白", 
+                    "stock" : NumberInt(1233), 
+                    "salesVolume" : NumberInt(5123)
+                }
+            ], 
+            "name" : "6GB+128GB", 
+            "oldPrice" : NumberInt(1599), 
+            "nowPrice" : NumberInt(1499)
+        }
+    ], 
+    "brand" : ObjectId("5dd3474798052b4004f6c9d1"), 
+    "name" : "Redmi Note8Pro", 
+    "subtitle" : "6400万全场景四摄 液冷游戏芯 4500mAh长续航 NFC 18W快充 红外遥控 游戏智能手机 小米 红米", 
+    "coverImage" : "http://localhost:3000/uploads/0364c39395b2f6c934c6bb48b9aff368", 
+    "detailImage" : "http://localhost:3000/uploads/5f4f82b11e19f79379ccf0f3ea2cc79f", 
+    "createdAt" : ISODate("2019-11-19T01:04:31.543+0000"), 
+    "updatedAt" : ISODate("2019-11-20T03:09:48.454+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd4c422d327dc5324b44597"), 
+    "parameter" : {
+        "score" : NumberInt(7), 
+        "productionDate" : "2019-10-30T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.39", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "骁龙855 Plus", 
+        "ramSize" : "6GB/8GB/12GB", 
+        "ramType" : "LPDDR4X", 
+        "romSize" : "64GB/128GB/256GB", 
+        "romType" : "UFS 3.0", 
+        "batteryCapacity" : "4000", 
+        "weight" : "185", 
+        "rearCamera" : "4800万像素主摄像头+1300万像素超广角镜头+800万像素两倍光学变焦镜头+500万像素超微距镜头\t", 
+        "frontCamera" : "2000万像素"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5dd4c422d327dc5324b44598"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd4c422d327dc5324b44599"), 
+                    "name" : "黑色", 
+                    "stock" : NumberInt(3235), 
+                    "salesVolume" : NumberInt(2353)
+                }
+            ], 
+            "name" : "8GB+128GB", 
+            "oldPrice" : NumberInt(2899), 
+            "nowPrice" : NumberInt(2899)
+        }, 
+        {
+            "_id" : ObjectId("5dd4c5b9d327dc5324b445a5"), 
+            "name" : "8GB+256GB", 
+            "oldPrice" : NumberInt(3199), 
+            "nowPrice" : NumberInt(3199), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd4c5b9d327dc5324b445a7"), 
+                    "name" : "白色", 
+                    "stock" : NumberInt(2323), 
+                    "salesVolume" : NumberInt(1233)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4c5b9d327dc5324b445a6"), 
+                    "name" : "黑色", 
+                    "stock" : NumberInt(1232), 
+                    "salesVolume" : NumberInt(2131)
+                }
+            ]
+        }, 
+        {
+            "_id" : ObjectId("5dd4c5b9d327dc5324b445a3"), 
+            "name" : "12GB+256GB", 
+            "oldPrice" : NumberInt(3599), 
+            "nowPrice" : NumberInt(3599), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd4c5b9d327dc5324b445a4"), 
+                    "name" : "松绿", 
+                    "stock" : NumberInt(1231), 
+                    "salesVolume" : NumberInt(2223)
+                }
+            ]
+        }
+    ], 
+    "brand" : ObjectId("5dccadfadc08e52fec69b30f"), 
+    "name" : "锤子(smartisan) 坚果Pro3", 
+    "subtitle" : "骁龙855PLUS 4800万四摄 UFS3.0 全网通双卡双待 全面屏游戏手机", 
+    "coverImage" : "http://localhost:3000/uploads/278592f8715536f2b9af1fd73ab2b299", 
+    "detailImage" : "http://localhost:3000/uploads/1e77710be89276c47dea6413493814ac", 
+    "createdAt" : ISODate("2019-11-20T04:42:10.562+0000"), 
+    "updatedAt" : ISODate("2019-11-20T04:48:57.740+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd4c726d327dc5324b445aa"), 
+    "parameter" : {
+        "score" : NumberInt(9), 
+        "productionDate" : "2019-10-31T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.53", 
+        "screenRatio" : "2400x1176", 
+        "cpuType" : "麒麟990", 
+        "ramSize" : "8GB", 
+        "ramType" : "LPDDR4X", 
+        "romSize" : "128GB/256GB", 
+        "romType" : "UFS 3.0", 
+        "batteryCapacity" : "4500", 
+        "weight" : "198", 
+        "frontCamera" : "3200万像素", 
+        "rearCamera" : "4000万像素电影超广角镜头+4000万像素超感光镜头+800万像素长焦镜头+3D深感镜头"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5dd4c726d327dc5324b445ab"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd4c726d327dc5324b445ac"), 
+                    "name" : "亮黑色", 
+                    "stock" : NumberInt(0), 
+                    "salesVolume" : NumberInt(2331)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4c98ad327dc5324b445d7"), 
+                    "name" : "星河银", 
+                    "stock" : NumberInt(0), 
+                    "salesVolume" : NumberInt(2321)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4c98ad327dc5324b445d6"), 
+                    "name" : "翡冰翠", 
+                    "stock" : NumberInt(1245), 
+                    "salesVolume" : NumberInt(1231)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4c98ad327dc5324b445d5"), 
+                    "name" : "罗兰紫", 
+                    "stock" : NumberInt(1231), 
+                    "salesVolume" : NumberInt(2131)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4c98ad327dc5324b445d4"), 
+                    "name" : "青山黛", 
+                    "stock" : NumberInt(1231), 
+                    "salesVolume" : NumberInt(1231)
+                }
+            ], 
+            "name" : "8GB+256GB", 
+            "oldPrice" : NumberInt(6899), 
+            "nowPrice" : NumberInt(6899)
+        }, 
+        {
+            "_id" : ObjectId("5dd4c98ad327dc5324b445d0"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd4c98ad327dc5324b445d2"), 
+                    "name" : "亮黑色", 
+                    "stock" : NumberInt(2331), 
+                    "salesVolume" : NumberInt(1231)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4c98ad327dc5324b445d1"), 
+                    "name" : "翡冰翠", 
+                    "stock" : NumberInt(1321), 
+                    "salesVolume" : NumberInt(4513)
+                }
+            ], 
+            "name" : "8GB+512GB", 
+            "oldPrice" : NumberInt(7899), 
+            "nowPrice" : NumberInt(7899)
+        }
+    ], 
+    "brand" : ObjectId("5dca2148ab9393a5e0feeb12"), 
+    "name" : "华为 HUAWEI Mate 30 Pro 5G", 
+    "createdAt" : ISODate("2019-11-20T04:55:02.896+0000"), 
+    "updatedAt" : ISODate("2019-11-20T10:18:25.519+0000"), 
+    "__v" : NumberInt(0), 
+    "coverImage" : "http://localhost:3000/uploads/efb1033b192d1e82ad11d8acd8402cce", 
+    "detailImage" : "http://localhost:3000/uploads/c4010be8cd933bacc7f4858e69b3d9d7", 
+    "subtitle" : "麒麟990 环幕屏双4000万徕卡电影四摄 5G全网通版"
+}
+{ 
+    "_id" : ObjectId("5dd4cbffd327dc5324b445d9"), 
+    "parameter" : {
+        "score" : NumberInt(8), 
+        "productionDate" : "2019-11-04T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.268", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "麒麟810\t", 
+        "ramSize" : "6GB", 
+        "ramType" : "LPDDR3", 
+        "romSize" : "64GB/128GB", 
+        "romType" : "UFS 2.1", 
+        "batteryCapacity" : "4000", 
+        "weight" : "178", 
+        "frontCamera" : "3200万像素", 
+        "rearCamera" : "4800万像素主摄镜头+900万像素超广角镜头+200万像素景深镜+200万像素微距"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5dd4cbffd327dc5324b445da"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5dd4cbffd327dc5324b445db"), 
+                    "name" : "幻夜黑", 
+                    "stock" : NumberInt(2332), 
+                    "salesVolume" : NumberInt(1322)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4ce15d327dc5324b445e4"), 
+                    "name" : "翡并翠", 
+                    "stock" : NumberInt(1213), 
+                    "salesVolume" : NumberInt(1231)
+                }, 
+                {
+                    "_id" : ObjectId("5dd4ce15d327dc5324b445e3"), 
+                    "name" : "苏音蓝", 
+                    "stock" : NumberInt(1213), 
+                    "salesVolume" : NumberInt(1232)
+                }
+            ], 
+            "name" : "6GB+64GB", 
+            "oldPrice" : NumberInt(1599), 
+            "nowPrice" : NumberInt(1599)
+        }
+    ], 
+    "brand" : ObjectId("5dca2148ab9393a5e0feeb12"), 
+    "name" : "华为 HUAWEI nova 5z", 
+    "createdAt" : ISODate("2019-11-20T05:15:43.179+0000"), 
+    "updatedAt" : ISODate("2019-11-20T05:24:37.369+0000"), 
+    "__v" : NumberInt(0), 
+    "coverImage" : "http://localhost:3000/uploads/e717bbed64a7dc89415e77a50bba23cd", 
+    "detailImage" : "http://localhost:3000/uploads/e25a24443828d5c68ed734f77b65a88b", 
+    "subtitle" : "麒麟810芯片 4800万AI四摄 3200万人像超级夜景 全网通双卡双待"
+}

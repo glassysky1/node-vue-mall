@@ -1,0 +1,21 @@
+{ 
+    "_id" : ObjectId("5dd21845e8f8ac76dcd2e933"), 
+    "productId" : ObjectId("5dd163849e51cb6f1867b1d4"), 
+    "name" : "小米 CC9 Pro", 
+    "coverImage" : "http://localhost:3000/uploads/1da92557f0ccdd5a91db3426c6ad3288", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd347ae98052b4004f6c9da"), 
+    "productId" : ObjectId("5dd33f9f98052b4004f6c9bb"), 
+    "name" : "2000万像素", 
+    "coverImage" : "http://localhost:3000/uploads/82917981f718aa51cf8303b48060dbd4", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dd4ce51d327dc5324b445e6"), 
+    "productId" : ObjectId("5dd4cbffd327dc5324b445d9"), 
+    "name" : "华为 HUAWEI nova 5", 
+    "coverImage" : "http://localhost:3000/uploads/170091d5bdd1984ff7679ffaed102acd", 
+    "__v" : NumberInt(0)
+}

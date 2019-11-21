@@ -52,7 +52,7 @@ module.exports = app => {
   }, router)
 
   const Brand = require('../../models/Brand')
-  // 测试接口
+  // 品牌列表
   app.use('/web/api/brandList', async (req, res) => {
     //聚合函数
     const brands = await Brand.aggregate([
@@ -73,5 +73,23 @@ module.exports = app => {
     res.send(brands)
   })
 
+  //登陆接口
+  app.post('/web/api/login',async(req,res) =>{
+    const {username,password} = req.body
+    const WebUser = require('../../models/WebUser')
+    const user = await WebUser.findOne({username}).select('+password')
+
+    //校验密码
+    const isValid = require('bcryptjs').compareSync(password,user.password)
+    
+    //如果密码不对
+    if(!isValid){
+      return res.status(422).send({
+        message:'密码错误'
+      })
+    }
+  
+    
+  })
 
 }
