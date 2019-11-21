@@ -78,11 +78,12 @@ export default {
             username: this.ruleForm.name,
             password: this.ruleForm.pwd
           };
-          await this.$http.post("rest/web_users", model);
+        const res =  await this.$http.post("login", model);
+          localStorage.token = res.data.token
           this.$router.push("/");
           this.$message({
             type: "success",
-            message: "注册成功"
+            message: "登陆成功"
           });
         }
       });

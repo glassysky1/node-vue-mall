@@ -1,4 +1,5 @@
 module.exports = app => {
+  const assert = require('http-assert')
   const express = require('express')
   const router = express.Router(
     {
@@ -74,22 +75,28 @@ module.exports = app => {
   })
 
   //登陆接口
-  app.post('/web/api/login',async(req,res) =>{
-    const {username,password} = req.body
+  app.post('/web/api/login', async (req, res) => {
+    const { username, password } = req.body
     const WebUser = require('../../models/WebUser')
-    const user = await WebUser.findOne({username}).select('+password')
-
+    const user = await WebUser.findOne({ username }).select('+password')
+    assert(user, 422, '用户名不存在')
     //校验密码
-    const isValid = require('bcryptjs').compareSync(password,user.password)
-    
+    const isValid = require('bcryptjs').compareSync(password, user.password)
+
     //如果密码不对
-    if(!isValid){
-      return res.status(422).send({
-        message:'密码错误'
-      })
-    }
-  
-    
+    assert(isValid, 422, '密码错误')
+    //返回token
+    const jwt = require('jsonwebtoken')
+    const token = jwt.sign({ id: user._id }, app.get('secret'))
+    res.send({ token })
   })
 
+
+  //错误处理函数
+  app.use(async (err, req, res, next) => {
+    //没有状态码就报500错误
+    res.status(err.statusCode || 500).send({
+      message: err.message
+    })
+  })
 }
