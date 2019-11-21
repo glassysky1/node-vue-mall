@@ -9,6 +9,7 @@
               <i class="el-icon-arrow-down"></i>
             </span>
             <div v-show="showFlag2" class="logout ac" @mouseover="sover2" @mouseleave="sout2">
+              <span class="text" @click="$router.push('/personal-center')">个人中心</span><br>
               <span class="text" @click="logout">退出登录</span>
             </div>
           </li>
@@ -28,13 +29,13 @@
         <h1 @click="$router.push('/')" class="logo">
           <a class="logo_tit"></a>
         </h1>
-        <div class="search">
+        <div class="search" v-show="navShow">
           <input type="text" placeholder="搜索商品" class="box" />
           <button class="btn">搜索</button>
         </div>
       </div>
     </header>
-    <nav class="nav">
+    <nav class="nav" v-show="navShow">
       <div class="w clearfix">
         <ul>
           <li @mouseover="enter" @mouseleave="mouseleave" class="user-nav-item">
@@ -103,6 +104,12 @@ export default {
       showFlag2: false,
       brandList: []
     };
+  },
+  props:{
+    navShow:{
+      type:Boolean,
+      default:true
+    },
   },
   computed: {
     ...mapGetters(["userInfo"])
@@ -205,7 +212,8 @@ export default {
           .logout
             position absolute
             width 100%
-            z-index 50
+            z-index 500
+            background-color #fff
             box-shadow 1px 2px 1px rgba(0, 0, 0, 0.1)
             top 30px
             line-height 30px
@@ -217,7 +225,6 @@ export default {
           background-color #999
   .header
     height 140px
-    border-bottom 1px solid #cccccc
     .w
       position relative
       .logo

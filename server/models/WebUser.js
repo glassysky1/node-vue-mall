@@ -7,7 +7,8 @@ const schema = new mongoose.Schema({
     set(val){
       return bcrypt.hashSync(val,10)
     }
-  }
+  },
+  
 })
 
 module.exports = mongoose.model('WebUser', schema)

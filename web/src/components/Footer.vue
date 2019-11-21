@@ -16,6 +16,7 @@ export default {};
     height 100px
     border-top 1px solid #cccccc
     background-color #EAEAEA
+    margin-top 30vh
     text-align center
     .title
       line-height 100px

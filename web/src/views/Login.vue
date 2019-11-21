@@ -107,7 +107,7 @@ export default {
       .text
         font-size 22px
     .card
-      margin 0 auto
+      margin 100px auto
       width 500px
 </style>
 
