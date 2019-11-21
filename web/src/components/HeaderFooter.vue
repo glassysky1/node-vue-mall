@@ -9,7 +9,7 @@
               <i class="el-icon-arrow-down"></i>
             </span>
             <div v-show="showFlag2" class="logout ac" @mouseover="sover2" @mouseleave="sout2">
-              <span class="text" @click="$router.push('/personal-center')">个人中心</span><br>
+              <span class="text" @click="$router.push('/personal-center/address-list')">个人中心</span><br>
               <span class="text" @click="logout">退出登录</span>
             </div>
           </li>
