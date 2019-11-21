@@ -3,11 +3,19 @@
     <div class="clearfix shortcut">
       <div class="w">
         <ul class="fr">
-          <li>
-            <a style="margin-right:2px;"  @click="$router.push('/login')">你好,请登录&nbsp;</a>
+          <li v-if="userInfo.username" class="login" @mouseover="enter2" @mouseleave="mouseleave2">
+            <span class="text">
+              欢迎您：{{userInfo.username}}
+              <i class="el-icon-arrow-down"></i>
+            </span>
+            <div v-show="showFlag2" class="logout ac" @mouseover="sover2" @mouseleave="sout2">
+              <span class="text" @click="logout">退出登录</span>
+            </div>
+          </li>
+          <li v-else>
+            <a style="margin-right:2px;" @click="$router.push('/login')">你好,请登录&nbsp;</a>
             <a class="col-red" @click="$router.push('/register')">免费注册</a>
           </li>
-          <li v-show="false">用户</li>
           <li class="space"></li>
           <li>
             <a>我的订单</a>
@@ -85,14 +93,19 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
       brandListIndex: "",
       showFlag: false,
       showFlag1: false,
+      showFlag2: false,
       brandList: []
     };
+  },
+  computed: {
+    ...mapGetters(["userInfo"])
   },
   methods: {
     enter() {
@@ -109,10 +122,22 @@ export default {
     sout() {
       this.showFlag = false;
     },
+    enter2() {
+      this.showFlag2 = true;
+    },
+    mouseleave2() {
+      this.timer2 = setTimeout(() => {
+        this.showFlag2 = false;
+      }, 150);
+    },
+    sover2() {
+      clearTimeout(this.timer2);
+    },
+    sout2() {
+      this.showFlag2 = false;
+    },
     enter1(index) {
       this.brandListIndex = index;
-      console.log(index);
-
       this.showFlag1 = true;
     },
     mouseleave1() {
@@ -126,11 +151,33 @@ export default {
     sout1() {
       this.showFlag1 = false;
     },
+    async logout() {
+      this.$confirm("确定退出吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        localStorage.token = "";
 
+        this.setUserState(true);
+        this.$nextTick(() => {
+          this.setUserState(false);
+        });
+        this.setUserInfo({});
+        this.$message({
+          type: "sucess",
+          message: "退出成功"
+        });
+      });
+    },
     async _fetchBrands() {
       const res = await this.$http.get("brandList");
       this.brandList = res.data;
-    }
+    },
+    ...mapMutations({
+      setUserState: "SET_USER_STATE",
+      setUserInfo: "SET_USER_INFO"
+    })
   },
   mounted() {
     this._fetchBrands();
@@ -149,6 +196,20 @@ export default {
       li
         float left
         margin 0 5px
+        &.login
+          position relative
+          &:hover
+            background-color #fff
+          .text
+            cursor pointer
+          .logout
+            position absolute
+            width 100%
+            z-index 50
+            box-shadow 1px 2px 1px rgba(0, 0, 0, 0.1)
+            top 30px
+            line-height 30px
+            left 0
         &.space
           margin-top 9px
           height 12px

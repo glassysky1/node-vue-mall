@@ -4,7 +4,16 @@ const http = axios.create({
   baseURL: 'http://localhost:3000/web/api'
 })
 
-
+http.interceptors.request.use(config => {
+  if (localStorage.token) {
+    
+    // 把token赋值到请求头Authorization(授权信息)，后端去调用
+    config.headers.Authorization = 'Bearer ' + (localStorage.token)
+  }
+  return config
+}, error => {
+  return Promise.reject(error);
+})
 
 //响应拦截
 http.interceptors.response.use(res => {

@@ -2,7 +2,7 @@
   <div class="register">
     <m-footer>
       <div class="w">
-        <div class="logo">
+        <div class="logo" @click="$router.push('/')">
           <img src="../assets/logo.jpg" height="120px" width="120" alt />
           <span class="text">欢迎登陆</span>
         </div>
@@ -32,8 +32,8 @@
 </template>
 <script>
 import _ from "lodash";
+import { mapMutations } from "vuex";
 import MFooter from "../components/Footer";
-import { async } from "q";
 export default {
   data() {
     return {
@@ -78,16 +78,23 @@ export default {
             username: this.ruleForm.name,
             password: this.ruleForm.pwd
           };
-        const res =  await this.$http.post("login", model);
-          localStorage.token = res.data.token
+          const res = await this.$http.post("login", model);
+          localStorage.token = res.data.token;
           this.$router.push("/");
+          this.setUserState(true);
+          this.$nextTick(() => {
+            this.setUserState(false);
+          });
           this.$message({
             type: "success",
             message: "登陆成功"
           });
         }
       });
-    }
+    },
+    ...mapMutations({
+      setUserState: "SET_USER_STATE"
+    })
   }
 };
 </script>

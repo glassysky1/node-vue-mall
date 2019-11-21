@@ -2,7 +2,7 @@
   <div class="register">
     <m-footer>
       <div class="w">
-        <div class="logo">
+        <div class="logo" @click="$router.push('/')">
           <img src="../assets/logo.jpg" height="120px" width="120" alt />
           <span class="text">欢迎注册</span>
         </div>

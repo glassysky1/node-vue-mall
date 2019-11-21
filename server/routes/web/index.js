@@ -1,6 +1,8 @@
 module.exports = app => {
   const assert = require('http-assert')
   const express = require('express')
+  const jwt = require('jsonwebtoken')
+  const WebUser = require('../../models/WebUser')
   const router = express.Router(
     {
       mergeParams: true
@@ -91,7 +93,26 @@ module.exports = app => {
     res.send({ token })
   })
 
-
+  //获取用户状态
+  app.get('/web/api/userInfo', async (req, res) => {
+    //获取请求头
+    //提取最后一个元素
+    const token = String(req.headers.authorization || '').split(' ').pop()
+    //如果token不存在
+    // assert(token, 401, '请提供jwt token')
+    //解密，把用户id解密出来
+    if(!token){
+      return
+    }
+    const { id } = jwt.verify(token, app.get('secret'))
+    // assert(id, 401, '无效的jwt token')
+    // { id: '5dc782571e185487ec049538', iat: 1573369105 }
+    //挂载在req上去
+    const user = await WebUser.findById(id)
+    // { _id: 5dc782571e185487ec049538, username: 'admin', __v: 0 }
+    // assert(user, 401, '请先登录')
+    res.send(user)
+  })
   //错误处理函数
   app.use(async (err, req, res, next) => {
     //没有状态码就报500错误
