@@ -1,7 +1,6 @@
 module.exports = app => {
   const assert = require('http-assert')
   const express = require('express')
-  const jwt = require('jsonwebtoken')
   const WebUser = require('../../models/WebUser')
   //登录校验中间件
   const authMiddleware = require('../../middleware/auth')
@@ -82,7 +81,6 @@ module.exports = app => {
   //登陆接口
   app.post('/web/api/login', async (req, res) => {
     const { username, password } = req.body
-    const WebUser = require('../../models/WebUser')
     const user = await WebUser.findOne({ username }).select('+password')
     assert(user, 422, '用户名不存在')
     //校验密码
@@ -105,9 +103,13 @@ module.exports = app => {
   })
 
   //用户地址
-  app.use('web/api/addressList/:uid', async (req, res) => {
-    console.log(uid);
-
+  app.put('/web/api/addressList', authMiddleware(options), async (req, res) => {
+    console.log(req.body);
+    
+    const model = await WebUser.findByIdAndUpdate(req.user._id,{
+      addressList:req.body
+    })
+    res.send(model)
   })
   //错误处理函数
   app.use(async (err, req, res, next) => {

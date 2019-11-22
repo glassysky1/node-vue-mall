@@ -3,8 +3,8 @@
     <header-footer :navShow="navShow">
       <div class="w">
         <el-container style="min-height: 80vh; border: 1px solid #eee">
-          <el-aside width="200px"  >
-            <el-menu router :default-openeds="['1']" :default-active="$route.path" >
+          <el-aside width="200px">
+            <el-menu router :default-openeds="['1']" :default-active="$route.path">
               <el-submenu index="1">
                 <template slot="title">
                   <i class="el-icon-message"></i>hh
@@ -33,12 +33,12 @@ import HeaderFooter from "../components/HeaderFooter";
 export default {
   data() {
     return {
-      navShow: false,
+      navShow: false
     };
   },
   components: {
     HeaderFooter
-  }
+  },
 };
 </script>
 

@@ -7,7 +7,8 @@
       <div class="address-item" v-for="(address,index) in addressList" :key="index">
         <div class="top">
           <span class="title font16">{{address.username}}</span>
-          <span class="default">默认地址</span>
+          <span class="default" v-show="address.isDefault">默认地址</span>
+          <span class="el-icon-close" @click="deleteAddress(index)"></span>
         </div>
         <div class="content">
           <table>
@@ -29,13 +30,13 @@
             </tr>
             <tr>
               <td>邮编 :</td>
-              <td>{{address.isDefault}}</td>
+              <td>{{address.postCode}}</td>
             </tr>
           </table>
         </div>
         <div class="setting">
-          <a class="default">设为默认</a>
-          <a class="edit">编辑</a>
+          <a class="default" @click="setDefault(index)">设为默认</a>
+          <a class="edit" @click="editAddress(address,index)">编辑</a>
         </div>
       </div>
     </div>
@@ -44,8 +45,8 @@
     </div>
     <div class="bounce-address" v-show="addressShowFlag">
       <div class="top">
-        <h3 class="title font16">新建收货地址</h3>
-        <i class="el-icon-close" @click="addressShowFlag=false"></i>
+        <h3 class="title font16">{{editFlag?'编辑':'新建'}}收货地址</h3>
+        <i class="el-icon-close" @click="close"></i>
       </div>
       <div class="center">
         <el-form
@@ -65,10 +66,10 @@
             <el-input v-model="ruleForm.streetName"></el-input>
           </el-form-item>
           <el-form-item label="邮编" prop="postCode">
-            <el-input v-model="ruleForm.postCode" maxlength="6"></el-input>
+            <el-input v-model="ruleForm.postCode" type="number" maxlength="6"></el-input>
           </el-form-item>
           <el-form-item label="手机号码" prop="tel">
-            <el-input v-model="ruleForm.tel" maxlength="11"></el-input>
+            <el-input v-model="ruleForm.tel" type="number" maxlength="11"></el-input>
           </el-form-item>
           <el-form-item label="设为默认" prop="isDefault">
             <el-switch v-model="ruleForm.isDefault"></el-switch>
@@ -86,7 +87,9 @@
 export default {
   data() {
     return {
+      editIndex: "",
       addressList: [],
+      editFlag: false,
       addressShowFlag: false,
       ruleForm: {
         username: "",
@@ -124,7 +127,6 @@ export default {
         postCode: [
           {
             required: true,
-            type: "string",
             message: "请输入邮编",
             trigger: "blur"
           }
@@ -132,7 +134,6 @@ export default {
         tel: [
           {
             required: true,
-            type: "string",
             message: "请输入手机号",
             trigger: "blur"
           }
@@ -144,32 +145,118 @@ export default {
     save() {
       this.$refs["ruleForm"].validate(async valid => {
         if (valid) {
-          if (!this.userInfo._id) {
-            return;
+          //如果是编辑状态
+          if (this.editFlag) {
+            const {
+              username,
+              city,
+              streetName,
+              postCode,
+              tel,
+              isDefault
+            } = this.ruleForm;
+            this.addressList[this.editIndex].username = username;
+            this.addressList[this.editIndex].city = city;
+            this.addressList[this.editIndex].streetName = streetName;
+            this.addressList[this.editIndex].postCode = postCode;
+            this.addressList[this.editIndex].tel = tel;
+            this.addressList[this.editIndex].isDefault = isDefault;
+            //如果你保存的时候，设为默认地址了，你得把这个item置顶，且把其他默认地址改成普通地址
+            if (this.ruleForm.isDefault === true) {
+              this.addressList.forEach((address, index) => {
+                if (index != this.editIndex) {
+                  address.isDefault = false;
+                }
+              });
+              let defaultAddress = this.addressList.splice(this.editIndex, 1);
+              this.addressList.unshift(defaultAddress[0]);
+            }
+            this.editFlag = false;
+          } else {
+            if (!this.ruleForm.isDefault) {
+              this.addressList.push(this.ruleForm);
+            } else {
+              this.addressList.forEach((address, index) => {
+                address.isDefault = false;
+              });
+              this.addressList.unshift(this.ruleForm);
+            }
           }
-          await this.$http.get(
-            `addressList/${this.userInfo._id}`);
+          await this.$http.put("addressList", this.addressList);
           this.$message({
             type: "success",
             message: "操作成功"
           });
+          this.addressShowFlag = false;
+          this.ruleForm = {
+            username: "",
+            city: "",
+            streetName: "",
+            postCode: "",
+            tel: "",
+            isDefault: false
+          };
         }
       });
     },
-    addAddress(){
-      this.addressShowFlag =true
-      this.addressList.push({})
+    //设为默认
+    async setDefault(defaultIndex) {
+      this.addressList.forEach((address, index) => {
+        if (defaultIndex != index) {
+          address.isDefault = false;
+        }
+      });
+      this.addressList[defaultIndex].isDefault = true;
+      let defaultAddress = this.addressList.splice(defaultIndex, 1);
+      this.addressList.unshift(defaultAddress[0]);
+      await this.$http.put("addressList", this.addressList);
     },
-    async _fetchWebUser() {
-      if (!this.userInfo._id) {
-        return;
-      }
-      const res = await this.$http.get(`rest/web_users/${this.userInfo._id}`);
+    editAddress(address, editIndex) {
+      this.editFlag = true;
+      this.editIndex = editIndex;
+      const { username, city, streetName, postCode, tel, isDefault } = address;
+      this.ruleForm = {
+        username,
+        city,
+        streetName,
+        postCode,
+        tel,
+        isDefault
+      };
+      this.addressShowFlag = true;
+    },
+    deleteAddress(index) {
+      this.$confirm("确定删除此地址吗", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(async () => {
+        this.addressList.splice(index, 1);
+        await this.$http.put("addressList", this.addressList);
+      });
+    },
+    addAddress() {
+      this.addressShowFlag = true;
+    },
+    close() {
+      this.addressShowFlag = false;
+      this.editFlag = false;
+      this.ruleForm = {
+        username: "",
+        city: "",
+        streetName: "",
+        postCode: "",
+        tel: "",
+        isDefault: false
+      };
+    },
+    async _fetchUser() {
+      const res = await this.$http.get("user");
       this.addressList = res.data.addressList;
     }
   },
-  mounted() {
-    // this._fetchWebUser();
+  created() {
+    this._fetchUser();
   }
 };
 </script>
@@ -183,6 +270,7 @@ export default {
       margin-top 10px
       position relative
       .top
+        position relative
         .title
           font-weight bold
         .default
@@ -191,6 +279,11 @@ export default {
           background-color #FFAA45
           color #fff
           padding 0 5px
+        .el-icon-close
+          position absolute
+          right 0
+          top 0
+          font-size 20px
       .content
         table
           tr, td
