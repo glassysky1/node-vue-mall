@@ -12,8 +12,8 @@
           />
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
-        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+        <div class="swiper-button-prev swiper-button-white" style="left:5%" slot="button-prev"></div>
+        <div class="swiper-button-next swiper-button-white" style="right:5%" slot="button-next"></div>
       </swiper>
     </header-footer>
   </div>

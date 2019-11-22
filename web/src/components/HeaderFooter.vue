@@ -91,6 +91,23 @@
     <footer class="footer">
       <h3 class="title">村头大白鹅</h3>
     </footer>
+    <div ref="rightSlider" class="right-slider">
+      <div class="left">
+        <ul class="ac">
+          <li class="orderList">
+            <i class="el-icon-document"></i>
+          </li>
+          <li class="cartList" @click="cart">
+            <i class="el-icon-shopping-cart-2"></i>
+            <div>购物车</div>
+            <i class="number">0</i>
+          </li>
+          <li class="starMe">
+            <i class="el-icon-star-off"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -103,7 +120,8 @@ export default {
       showFlag1: false,
       showFlag2: false,
       brandList: [],
-      user:{}
+      user: {},
+      openFlag:false
     };
   },
   props: {
@@ -113,6 +131,15 @@ export default {
     }
   },
   methods: {
+    cart(){
+      if(this.openFlag){
+      this.$refs.rightSlider.style.right ='-230px'
+      this.openFlag = false
+      return
+      }
+      this.$refs.rightSlider.style.right = '0px'
+      this.openFlag = true
+    },
     enter() {
       this.showFlag = true;
     },
@@ -167,7 +194,7 @@ export default {
           type: "sucess",
           message: "退出成功"
         });
-        this._fetchUser()
+        this._fetchUser();
       });
     },
     async _fetchBrands() {
@@ -176,12 +203,12 @@ export default {
     },
     async _fetchUser() {
       const res = await this.$http.get("user");
-      this.user = res.data
-    },
+      this.user = res.data;
+    }
   },
   created() {
     this._fetchBrands();
-    this._fetchUser()
+    this._fetchUser();
   }
 };
 </script>
@@ -189,6 +216,56 @@ export default {
 <style lang="stylus" scoped>
 @import '../assets/stylus/index.styl'
 .header_footer
+  position relative
+  .right-slider
+    height 100%
+    width 270px
+    position absolute
+    z-index 998
+    background-color #323232
+    right -230px
+    top 0
+    .left
+      height 100%
+      width 40px
+      position absolute
+      left 0
+      top 0
+      background-color #37383C
+      z-index 999
+      color #B46155
+      font-size 22px
+      ul
+        height 300px
+        position absolute
+        width 100%
+        top 300px
+        li
+          cursor pointer
+          margin-top 30px
+          &.cartList
+            &:hover
+              div
+                color #fff
+              .number
+                background-color #fff
+                color #f15443
+            background-color #484C4F
+            div
+              color #C0C1C2
+              padding 0 5px
+              font-size 16px
+            .number
+              background-color #F15443
+              color #fff
+              display inline-block
+              font-size 12px
+              font-weight bold
+              padding 0 6px
+              border-radius 50%
+          &:hover
+            color #ffffff
+            background-color #F15443
   .shortcut
     color #999999
     background-color #e3e4e5
