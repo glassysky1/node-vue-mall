@@ -3,13 +3,14 @@
     <div class="clearfix shortcut">
       <div class="w">
         <ul class="fr">
-          <li v-if="userInfo.username" class="login" @mouseover="enter2" @mouseleave="mouseleave2">
+          <li v-if="user.username" class="login" @mouseover="enter2" @mouseleave="mouseleave2">
             <span class="text">
-              欢迎您：{{userInfo.username}}
+              欢迎您：{{user.username}}
               <i class="el-icon-arrow-down"></i>
             </span>
             <div v-show="showFlag2" class="logout ac" @mouseover="sover2" @mouseleave="sout2">
-              <span class="text" @click="$router.push('/personal-center/address-list')">个人中心</span><br>
+              <span class="text" @click="$router.push('/personal-center/address-list')">个人中心</span>
+              <br />
               <span class="text" @click="logout">退出登录</span>
             </div>
           </li>
@@ -94,7 +95,6 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -102,17 +102,15 @@ export default {
       showFlag: false,
       showFlag1: false,
       showFlag2: false,
-      brandList: []
+      brandList: [],
+      user:{}
     };
   },
-  props:{
-    navShow:{
-      type:Boolean,
-      default:true
-    },
-  },
-  computed: {
-    ...mapGetters(["userInfo"])
+  props: {
+    navShow: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     enter() {
@@ -165,29 +163,25 @@ export default {
         type: "warning"
       }).then(() => {
         localStorage.token = "";
-
-        this.setUserState(true);
-        this.$nextTick(() => {
-          this.setUserState(false);
-        });
-        this.setUserInfo({});
         this.$message({
           type: "sucess",
           message: "退出成功"
         });
+        this._fetchUser()
       });
     },
     async _fetchBrands() {
       const res = await this.$http.get("brandList");
       this.brandList = res.data;
     },
-    ...mapMutations({
-      setUserState: "SET_USER_STATE",
-      setUserInfo: "SET_USER_INFO"
-    })
+    async _fetchUser() {
+      const res = await this.$http.get("user");
+      this.user = res.data
+    },
   },
-  mounted() {
+  created() {
     this._fetchBrands();
+    this._fetchUser()
   }
 };
 </script>

@@ -59,14 +59,19 @@ export default {
           },
           {
             validator: (rule, value, callback) => {
+              if (!this.usernames.length) {
+                callback();
+                return;
+              }
               for (const username of this.usernames) {
                 if (this.ruleForm.name === username) {
                   callback(new Error("用户名已存在"));
-                }else{
-                  callback()
+                } else {
+                  callback();
                 }
               }
-            }
+            },
+            trigger: "blur"
           }
         ],
         pwd: [
@@ -104,17 +109,16 @@ export default {
   methods: {
     register() {
       //验证整张表是否通过
+      console.log(2);
 
       this.$refs["ruleForm"].validate(async valid => {
         if (valid) {
-          console.log(1);
-
           let model = {
             username: this.ruleForm.name,
             password: this.ruleForm.pwd
           };
           await this.$http.post("rest/web_users", model);
-          this.$router.push("/");
+          this.$router.push("/register");
           this.$message({
             type: "success",
             message: "注册成功"

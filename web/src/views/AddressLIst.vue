@@ -1,15 +1,46 @@
 <template>
   <div class="address-list">
     <div class="add-wrapper">
-      <button class="add-btn" @click="addressShowFlag=true">新增收货地址</button>
+      <button class="add-btn" @click="addAddress">新增收货地址</button>
     </div>
-    <div class="content">
-      <div class="address-item">
-        
+    <div class="content" v-if="addressList.length">
+      <div class="address-item" v-for="(address,index) in addressList" :key="index">
+        <div class="top">
+          <span class="title font16">{{address.username}}</span>
+          <span class="default">默认地址</span>
+        </div>
+        <div class="content">
+          <table>
+            <tr>
+              <td>收货人:</td>
+              <td>{{address.username}}</td>
+            </tr>
+            <tr>
+              <td>所在城市:</td>
+              <td>{{address.city}}</td>
+            </tr>
+            <tr>
+              <td>所在街道:</td>
+              <td>{{address.streetName}}</td>
+            </tr>
+            <tr>
+              <td>手机号:</td>
+              <td>{{address.tel}}</td>
+            </tr>
+            <tr>
+              <td>邮编 :</td>
+              <td>{{address.isDefault}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="setting">
+          <a class="default">设为默认</a>
+          <a class="edit">编辑</a>
+        </div>
       </div>
-    <div class="no-result">
-      <span class="text">暂无地址哎</span>
     </div>
+    <div class="no-result" v-else>
+      <span class="text">暂无地址哎</span>
     </div>
     <div class="bounce-address" v-show="addressShowFlag">
       <div class="top">
@@ -55,6 +86,7 @@
 export default {
   data() {
     return {
+      addressList: [],
       addressShowFlag: false,
       ruleForm: {
         username: "",
@@ -92,7 +124,7 @@ export default {
         postCode: [
           {
             required: true,
-            type: "number",
+            type: "string",
             message: "请输入邮编",
             trigger: "blur"
           }
@@ -100,7 +132,7 @@ export default {
         tel: [
           {
             required: true,
-            type: "number",
+            type: "string",
             message: "请输入手机号",
             trigger: "blur"
           }
@@ -112,15 +144,76 @@ export default {
     save() {
       this.$refs["ruleForm"].validate(async valid => {
         if (valid) {
+          if (!this.userInfo._id) {
+            return;
+          }
+          await this.$http.get(
+            `addressList/${this.userInfo._id}`);
+          this.$message({
+            type: "success",
+            message: "操作成功"
+          });
         }
       });
+    },
+    addAddress(){
+      this.addressShowFlag =true
+      this.addressList.push({})
+    },
+    async _fetchWebUser() {
+      if (!this.userInfo._id) {
+        return;
+      }
+      const res = await this.$http.get(`rest/web_users/${this.userInfo._id}`);
+      this.addressList = res.data.addressList;
     }
+  },
+  mounted() {
+    // this._fetchWebUser();
   }
 };
 </script>
 <style lang="stylus">
 .address-list
   position relative
+  .content
+    .address-item
+      padding 5px
+      border 2px solid #E6E6E6
+      margin-top 10px
+      position relative
+      .top
+        .title
+          font-weight bold
+        .default
+          margin-left 10px
+          font-size 14px
+          background-color #FFAA45
+          color #fff
+          padding 0 5px
+      .content
+        table
+          tr, td
+            font-size 12px
+            border none
+          td
+            &:first-child
+              text-align right
+              width 80px
+              color #999
+            &:last-child
+              text-align left
+              padding-left 10px
+      .setting
+        position absolute
+        right 10px
+        bottom 5px
+        a
+          color #005EA7
+          &:hover
+            color #ec393c
+          &.edit
+            margin-left 10px
   .no-result
     width 100%
     text-align center

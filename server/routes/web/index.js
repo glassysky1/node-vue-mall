@@ -3,6 +3,10 @@ module.exports = app => {
   const express = require('express')
   const jwt = require('jsonwebtoken')
   const WebUser = require('../../models/WebUser')
+  //登录校验中间件
+  const authMiddleware = require('../../middleware/auth')
+  //资源中间件
+  const resourceMiddleware = require('../../middleware/resource')
   const router = express.Router(
     {
       mergeParams: true
@@ -46,13 +50,12 @@ module.exports = app => {
       })
     })
   //通用接口
-  app.use('/web/api/rest/:resource', async (req, res, next) => {
-    //复数转单数
-    const modelName = require('inflection').classify(req.params.resource)
-    //请求对象上挂载一个属性
-    req.Model = require(`../../models/${modelName}`)
-    next()
-  }, router)
+
+  const options = {
+    modelName: 'WebUser'
+  }
+
+  app.use('/web/api/rest/:resource', authMiddleware(options), resourceMiddleware(), router)
 
   const Brand = require('../../models/Brand')
   // 品牌列表
@@ -92,26 +95,19 @@ module.exports = app => {
     const token = jwt.sign({ id: user._id }, app.get('secret'))
     res.send({ token })
   })
-
   //获取用户状态
-  app.get('/web/api/userInfo', async (req, res) => {
-    //获取请求头
-    //提取最后一个元素
-    const token = String(req.headers.authorization || '').split(' ').pop()
-    //如果token不存在
-    // assert(token, 401, '请提供jwt token')
-    //解密，把用户id解密出来
-    if(!token){
+  app.get('/web/api/user', authMiddleware(options), async (req, res) => {
+    if (req.user) {
+      res.send(req.user)
       return
     }
-    const { id } = jwt.verify(token, app.get('secret'))
-    // assert(id, 401, '无效的jwt token')
-    // { id: '5dc782571e185487ec049538', iat: 1573369105 }
-    //挂载在req上去
-    const user = await WebUser.findById(id)
-    // { _id: 5dc782571e185487ec049538, username: 'admin', __v: 0 }
-    // assert(user, 401, '请先登录')
-    res.send(user)
+    res.send({})
+  })
+
+  //用户地址
+  app.use('web/api/addressList/:uid', async (req, res) => {
+    console.log(uid);
+
   })
   //错误处理函数
   app.use(async (err, req, res, next) => {

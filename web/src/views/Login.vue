@@ -32,7 +32,6 @@
 </template>
 <script>
 import _ from "lodash";
-import { mapMutations } from "vuex";
 import MFooter from "../components/Footer";
 export default {
   data() {
@@ -81,20 +80,13 @@ export default {
           const res = await this.$http.post("login", model);
           localStorage.token = res.data.token;
           this.$router.push("/");
-          this.setUserState(true);
-          this.$nextTick(() => {
-            this.setUserState(false);
-          });
           this.$message({
             type: "success",
             message: "登陆成功"
           });
         }
       });
-    },
-    ...mapMutations({
-      setUserState: "SET_USER_STATE"
-    })
+    }
   }
 };
 </script>

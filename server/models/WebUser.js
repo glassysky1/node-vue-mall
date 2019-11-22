@@ -12,13 +12,15 @@ const schema = new mongoose.Schema({
   addressList: [
     {
       username: { type: String },
-      city:{type:String},
+      city: { type: String },
       streetName: { type: String },
       postCode: { type: Number },
       tel: { type: Number },
       isDefault: { type: Boolean }
     }
-  ]
+  ],
+  cartList: { type: Array },
+  orderList: { type: Array }
 })
 
 module.exports = mongoose.model('WebUser', schema)
