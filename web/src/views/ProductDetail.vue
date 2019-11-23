@@ -4,7 +4,7 @@
       <div class="w">
         <div class="content clearfix">
           <div class="right fr">
-            <h1 class="title">{{product.name}} {{product.subtitle}}</h1>
+            <h1 class="title">{{product.name}} {{storageName}} {{colorName}} {{product.subtitle}}</h1>
             <p class="price" v-if="product.storages">
               价&nbsp;格
               <span class="nowPrice">￥{{product.storages[storageIndex].nowPrice}}</span>
@@ -50,7 +50,7 @@
                 :max="stock"
                 label="描述文字"
               ></el-input-number>
-              <button class="btn" v-if="stock">加入购物车</button>
+              <button class="btn" v-if="stock" @click="addToCartList">加入购物车</button>
               <button class="btn active" v-else>暂时无货</button>
             </div>
           </div>
@@ -213,6 +213,7 @@
 
 <script>
 import dayjs from "dayjs";
+import { mapMutations } from "vuex";
 import HeaderFooter from "../components/HeaderFooter";
 export default {
   filters: {
@@ -232,7 +233,11 @@ export default {
       colorIndex: 0,
       storageId: 0,
       colorId: 0,
-      stock: 0
+      stock: 0,
+      productPrice: "",
+      storageName: "",
+      colorName: "",
+      cartList: []
     };
   },
   watch: {
@@ -260,6 +265,46 @@ export default {
     handleClick(tab, event) {
       console.log(tab, event);
     },
+    async addToCartList() {
+      let cart = {
+        productId: this.productId,
+        productName: this.productName,
+        productSubtitle: this.productSubtitle,
+        productPrice: this.productPrice,
+        productNum: this.num,
+        storageId: this.storageId,
+        storageName: this.storageName,
+        colorId: this.colorId,
+        colorName: this.colorName,
+        checked: true
+      };
+      let flag = false;
+
+      this.cartList.forEach((item, index) => {
+        //判断购物车里面有没有同种商品，如果有则数量加加
+        if (
+          item.productId === cart.productId &&
+          item.storageId === cart.storageId &&
+          item.colorId === cart.colorId
+        ) {
+          flag = true;
+          item.productNum += cart.productNum;
+        }
+      });
+      if (!flag) {
+        this.cartList.push(cart);
+      }
+      await this.$http.put("cartList", this.cartList);
+      this.$message({
+        type: "success",
+        message: "加入购物车成功"
+      });
+      this.setCartListRefresh(false);
+      this.$nextTick(() => {
+        this.setCartListRefresh(true);
+      });
+      this.num = 1;
+    },
     //默认加载第一个容量和颜色
     _loadStorageAndColor() {
       if (this.product.storages) {
@@ -272,12 +317,18 @@ export default {
           this._loadStorageAndColor();
           return;
         }
+        this.num = 1;
         this.storageId = storage._id;
         this.colorId = color._id;
         this.stock = this.product.storages[this.storageIndex].colors[
           this.colorIndex
         ].stock;
-        console.log(this.storageId, this.colorId, this.stock);
+        this.productId = this.product._id;
+        this.productName = this.product.name;
+        this.productSubtitle = this.product.subtitle;
+        this.productPrice = storage.nowPrice;
+        this.storageName = storage.name;
+        this.colorName = color.name;
       }
     },
     selectStorage(storage, index) {
@@ -288,9 +339,7 @@ export default {
       this.colorIndex = index;
       this._loadStorageAndColor();
     },
-    handleChange(value) {
-      console.log(value);
-    },
+    handleChange(value) {},
     async _fetchProduct() {
       const res = await this.$http.get(`rest/product/${this.id}`);
       this.product = res.data;
@@ -310,10 +359,17 @@ export default {
     async _fetchProductList() {
       const res = await this.$http.get(`rest/product`);
       this.productList = res.data;
-    }
+    },
+    async _fechCartList() {
+      const res = await this.$http.get(`user`);
+      this.cartList = res.data.cartList;
+    },
+    ...mapMutations({
+      setCartListRefresh: "SET_CART_LIST_REFRESH"
+    })
   },
-  mounted() {},
   created() {
+    this._fechCartList();
     this._fetchProduct();
     this._fetchProductList();
   }

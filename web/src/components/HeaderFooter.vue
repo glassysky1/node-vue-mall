@@ -1,5 +1,5 @@
 <template>
-  <div class="header_footer" @click="closeSlider">
+  <div class="header-footer" @click="closeSlider">
     <div class="clearfix shortcut">
       <div class="w">
         <ul class="fr">
@@ -96,16 +96,31 @@
       <div class="right clearfix"></div>
       <div class="left clearfix">
         <ul class="ac">
-          <li class="orderList">
+          <li
+            class="order"
+            ref="order"
+            @click="order"
+            @mouseleave="orderShow=false"
+            @mouseover="orderShow=true"
+          >
             <i class="el-icon-document"></i>
+            <transition name="slide1">
+              <span class="text" v-show="orderShow">我的订单</span>
+            </transition>
           </li>
-          <li class="cartList" @click="toggleCart">
+          <li class="cart" ref="cart" @click="cart">
             <i class="el-icon-shopping-cart-2"></i>
             <div>购物车</div>
-            <i class="number">0</i>
+            <i class="number">{{totalProductNum}}</i>
           </li>
-          <li class="starMe">
+          <li class="star-me" @mousemove="codeShow=true" @mouseleave="codeShow=false">
             <i class="el-icon-star-off"></i>
+            <transition name="slide2">
+              <div class="image-wrapper" v-show="codeShow">
+                <img src="../assets/my-code.jpg" width="150" height="150" alt />
+                <span class="text">加我微信</span>
+              </div>
+            </transition>
           </li>
         </ul>
       </div>
@@ -114,16 +129,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
+      orderShow: false,
+      codeShow: false,
       brandListIndex: "",
       showFlag: false,
       showFlag1: false,
       showFlag2: false,
       brandList: [],
+      selectIndex: -1,
       user: {},
-      openFlag: false
+      openFlag: false,
+      cartList: [],
+      totalProductNum: 0
     };
   },
   props: {
@@ -132,22 +153,48 @@ export default {
       default: true
     }
   },
+  computed: {
+    ...mapGetters(["refreshCartListFlag"])
+  },
+  watch: {
+    refreshCartListFlag() {
+      this._fetchUser();
+    }
+  },
   methods: {
-    toggleCart() {
-      if (this.openFlag) {
-        this.$refs.rightSlider.style["transform"] = "translate3d(230px,0,0)";
-        this.$refs.rightSlider.style["transitionDuration"] = "0";
-        this.openFlag = false;
-        return;
+    cart() {
+      //0
+      if (this.selectIndex != 1 || !this.openFlag) {
+        this._toggleClick();
       }
-      this.$refs.rightSlider.style["transform"] = "translate3d(0,0,0)";
-      this.$refs.rightSlider.style["transitionDuration"] = "500ms";
-      this.openFlag = true;
+      this.selectIndex = 0;
+    },
+    order() {
+      if (this.selectIndex != 0 || !this.openFlag) {
+        this._toggleClick();
+      }
+      this.selectIndex = 1;
+    },
+
+    _toggleClick() {
+      if (this.$refs.rightSlider) {
+        if (this.openFlag) {
+          this.$refs.rightSlider.style["transform"] = "translate3d(230px,0,0)";
+          this.$refs.rightSlider.style["transitionDuration"] = "0";
+          this.openFlag = false;
+          return;
+        }
+        this.$refs.rightSlider.style["transform"] = "translate3d(0,0,0)";
+        this.$refs.rightSlider.style["transitionDuration"] = "500ms";
+        this.openFlag = true;
+      }
     },
     closeSlider() {
-      this.openFlag = false;
-      this.$refs.rightSlider.style["transform"] = "translate3d(230px,0,0)";
-      this.$refs.rightSlider.style["transitionDuration"] = "0";
+      if (this.$refs.rightSlider) {
+        this.openFlag = false;
+        this.$refs.rightSlider.style["transform"] = "translate3d(230px,0,0)";
+        this.$refs.rightSlider.style["transitionDuration"] = "0";
+      }
     },
     enter() {
       this.showFlag = true;
@@ -213,6 +260,11 @@ export default {
     async _fetchUser() {
       const res = await this.$http.get("user");
       this.user = res.data;
+      this.cartList = res.data.cartList;
+      this.totalProductNum = 0;
+      this.cartList.forEach((cart, index) => {
+        this.totalProductNum += cart.productNum;
+      });
     }
   },
   created() {
@@ -224,7 +276,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../assets/stylus/index.styl'
-.header_footer
+.header-footer
   position relative
   overflow-x hidden
   .right-slider
@@ -244,7 +296,6 @@ export default {
       width 40px
       float right
       background-color #37383C
-      z-index 999
       color #B46155
       position relative
       font-size 22px
@@ -256,7 +307,43 @@ export default {
         li
           cursor pointer
           margin-top 30px
-          &.cartList
+          &.star-me
+            position relative
+            .image-wrapper
+              position absolute
+              top -70px
+              left -156px
+              background-color #37383C
+              padding 3px
+              z-index -1
+              &.slide2-enter-active, &.slide2-leave-active
+                transition all 0.5s
+              &.slide2-enter, &.slide2-leave-to
+                transform translate3d(156px, 0, 0)
+              img
+                display block
+              .text
+                font-size 12px
+                color #fff
+          &.order
+            position relative
+            .text
+              position absolute
+              height 33px
+              top 0
+              background-color #37383C
+              color #fff
+              padding 0 10px
+              line-height 33px
+              font-size 12px
+              z-index -1
+              left -70px
+              width 50px
+              &.slide1-enter-active, &.slide1-leave-active
+                transition all 0.5s
+              &.slide1-enter, &.slide1-leave-to
+                transform translate3d(70px, 0, 0)
+          &.cart
             &:hover
               div
                 color #fff

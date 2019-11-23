@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+mongoose.set('useFindAndModify',false)
 const bcrypt = require('bcryptjs')
 const schema = new mongoose.Schema({
   username: { type: String, unique: true },
@@ -19,7 +20,20 @@ const schema = new mongoose.Schema({
       isDefault: { type: Boolean }
     }
   ],
-  cartList: { type: Array },
+  cartList: [
+    {
+      productId: { type: String },
+      productName: { type: String },
+      productPrice: { type: Number },
+      productSubtitle: { type: String },
+      productNum: { type: Number },
+      storageId: { type: String },
+      storageName: { type: String },
+      colorId: { type: String },
+      colorName: { type: String },
+      checked: { type: Boolean },
+    }
+  ],
   orderList: { type: Array }
 })
 

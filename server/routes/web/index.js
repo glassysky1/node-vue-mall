@@ -104,10 +104,16 @@ module.exports = app => {
 
   //用户地址
   app.put('/web/api/addressList', authMiddleware(options), async (req, res) => {
-    console.log(req.body);
-    
-    const model = await WebUser.findByIdAndUpdate(req.user._id,{
-      addressList:req.body
+    const model = await WebUser.findByIdAndUpdate(req.user._id, {
+      addressList: req.body
+    })
+    res.send(model)
+  })
+
+  //用户购物车
+  app.put('/web/api/cartList', authMiddleware(options), async (req, res) => {
+    const model = await WebUser.findByIdAndUpdate(req.user._id, {
+      cartList: req.body
     })
     res.send(model)
   })
