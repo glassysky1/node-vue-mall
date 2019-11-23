@@ -1,5 +1,5 @@
 <template>
-  <div class="header_footer">
+  <div class="header_footer" @click="closeSlider">
     <div class="clearfix shortcut">
       <div class="w">
         <ul class="fr">
@@ -91,13 +91,15 @@
     <footer class="footer">
       <h3 class="title">村头大白鹅</h3>
     </footer>
-    <div ref="rightSlider" class="right-slider">
-      <div class="left">
+
+    <div ref="rightSlider" @click.stop class="right-slider">
+      <div class="right clearfix"></div>
+      <div class="left clearfix">
         <ul class="ac">
           <li class="orderList">
             <i class="el-icon-document"></i>
           </li>
-          <li class="cartList" @click="cart">
+          <li class="cartList" @click="toggleCart">
             <i class="el-icon-shopping-cart-2"></i>
             <div>购物车</div>
             <i class="number">0</i>
@@ -121,7 +123,7 @@ export default {
       showFlag2: false,
       brandList: [],
       user: {},
-      openFlag:false
+      openFlag: false
     };
   },
   props: {
@@ -131,14 +133,21 @@ export default {
     }
   },
   methods: {
-    cart(){
-      if(this.openFlag){
-      this.$refs.rightSlider.style.right ='-230px'
-      this.openFlag = false
-      return
+    toggleCart() {
+      if (this.openFlag) {
+        this.$refs.rightSlider.style["transform"] = "translate3d(230px,0,0)";
+        this.$refs.rightSlider.style["transitionDuration"] = "0";
+        this.openFlag = false;
+        return;
       }
-      this.$refs.rightSlider.style.right = '0px'
-      this.openFlag = true
+      this.$refs.rightSlider.style["transform"] = "translate3d(0,0,0)";
+      this.$refs.rightSlider.style["transitionDuration"] = "500ms";
+      this.openFlag = true;
+    },
+    closeSlider() {
+      this.openFlag = false;
+      this.$refs.rightSlider.style["transform"] = "translate3d(230px,0,0)";
+      this.$refs.rightSlider.style["transitionDuration"] = "0";
     },
     enter() {
       this.showFlag = true;
@@ -217,23 +226,27 @@ export default {
 @import '../assets/stylus/index.styl'
 .header_footer
   position relative
+  overflow-x hidden
   .right-slider
     height 100%
-    width 270px
     position absolute
     z-index 998
-    background-color #323232
-    right -230px
+    right 0
     top 0
+    transform translate3d(230px, 0, 0)
+    .right
+      height 100%
+      float right
+      width 230px
+      background-color #323232
     .left
       height 100%
       width 40px
-      position absolute
-      left 0
-      top 0
+      float right
       background-color #37383C
       z-index 999
       color #B46155
+      position relative
       font-size 22px
       ul
         height 300px
