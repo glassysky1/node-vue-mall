@@ -91,9 +91,48 @@
     <footer class="footer">
       <h3 class="title">村头大白鹅</h3>
     </footer>
-
-    <div ref="rightSlider" @click.stop class="right-slider">
-      <div class="right clearfix"></div>
+    <div ref="rightSlider" v-show="slideShow" @click.stop class="right-slider">
+      <div class="right clearfix">  
+        <div class="cart-list" v-show="selectIndex===0">
+          <h2 class="title font14">我的购物车</h2>
+          <div class="no-result" v-show="!cartList.length">
+            <span class="text">您的购物车还是空的</span>
+          </div>
+          <div
+            class="cart-item"
+            v-show="cartList.length"
+            v-for="(cart,index) in cartList"
+            :key="index"
+          >
+            <div class="image">
+              <img :src="cart.productCoverImage" width="100" height="100" alt />
+            </div>
+            <div class="desc">
+              <div class="desc-title">{{cart.productName}}&nbsp;{{cart.productSubtitle}}</div>
+              <p class="price">￥{{cart.productPrice}}</p>
+              <div class="num">x&nbsp;{{cart.productNum}}</div>
+              <span class="delete" @click="deleteCartItem(index)">删除</span>
+            </div>
+          </div>
+          <div class="total" v-show="cartList.length">
+            <span class="total-num">
+              共
+              <i>{{totalProductNum}}</i>件商品
+            </span>
+            <span class="total-price">
+              共计
+              <i>￥{{totalProductPrice}}</i>
+            </span>
+          </div>
+          <div
+            class="btn"
+            @click="$router.push('/personal-center/cart-list')"
+            v-show="cartList.length"
+          >
+            <button>去购物车结算</button>
+          </div>
+        </div>
+      </div>
       <div class="left clearfix">
         <ul class="ac">
           <li
@@ -114,7 +153,7 @@
             <i class="number">{{totalProductNum}}</i>
           </li>
           <li class="star-me" @mousemove="codeShow=true" @mouseleave="codeShow=false">
-            <i class="el-icon-star-off"></i>
+            <i class="el-icon-coffee-cup"></i>
             <transition name="slide2">
               <div class="image-wrapper" v-show="codeShow">
                 <img src="../assets/my-code.jpg" width="150" height="150" alt />
@@ -129,7 +168,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -144,13 +183,18 @@ export default {
       user: {},
       openFlag: false,
       cartList: [],
-      totalProductNum: 0
+      totalProductNum: 0,
+      totalProductPrice: 0
     };
   },
   props: {
     navShow: {
       type: Boolean,
       default: true
+    },
+    slideShow:{
+      type:Boolean,
+      default:true
     }
   },
   computed: {
@@ -162,6 +206,15 @@ export default {
     }
   },
   methods: {
+    async deleteCartItem(index) {
+      this.cartList.splice(index, 1);
+      await this.$http.put("cartList", this.cartList);
+      this._fetchUser();
+      this.setCartListRefresh(false);
+      this.$nextTick(() => {
+        this.setCartListRefresh(true);
+      });
+    },
     cart() {
       //0
       if (this.selectIndex != 1 || !this.openFlag) {
@@ -262,14 +315,20 @@ export default {
       this.user = res.data;
       this.cartList = res.data.cartList;
       this.totalProductNum = 0;
+      this.totalProductPrice = 0;
       this.cartList.forEach((cart, index) => {
         this.totalProductNum += cart.productNum;
+        this.totalProductPrice += cart.productNum * cart.productPrice;
       });
-    }
+    },
+    ...mapMutations({
+      setCartListRefresh: "SET_CART_LIST_REFRESH"
+    })
   },
   created() {
     this._fetchBrands();
     this._fetchUser();
+    
   }
 };
 </script>
@@ -291,6 +350,70 @@ export default {
       float right
       width 230px
       background-color #323232
+      box-sizing border-box
+      padding 7px
+      .cart-list
+        height 100%
+        width 100%
+        overflow auto
+        .title
+          padding-left 5px
+          color #ffffff
+          font-weight bold
+        .no-result
+          text-align center
+          margin-top 15px
+          height 40px
+          background-color #FFFDEE
+          font-size 16px
+          color #FF6600
+          font-weight bold
+          padding-top 15px
+        .cart-item
+          margin-top 15px
+          position relative
+          .desc
+            position absolute
+            top 0
+            left 110px
+            width 106px
+            height 100%
+            .desc-title
+              color #999
+              height 40px
+              text-overflow ellipsis
+              overflow hidden
+            .price, .num
+              margin-top 5px
+              color #fff
+            .num
+              margin-left 3px
+            .delete
+              position absolute
+              right 0
+              bottom 5px
+              cursor pointer
+              background-color #939393
+              padding 0 3px
+              color #fff
+              border-radius 3px
+        .total
+          margin-top 20px
+          text-align center
+          font-size 14px
+          color #999999
+          i
+            color #EF5549
+            font-weight bold
+          .total-num
+            margin-right 5px
+        .btn
+          margin-top 15px
+          text-align center
+          button
+            background #EF5549
+            color #fff
+            padding 5px 50px
     .left
       height 100%
       width 40px

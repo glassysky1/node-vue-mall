@@ -1,6 +1,6 @@
 <template>
   <div class="personal-center">
-    <header-footer :navShow="navShow">
+    <header-footer :slideShow = "slideShow" :navShow="navShow">
       <div class="w">
         <el-container style="min-height: 80vh; border: 1px solid #eee">
           <el-aside width="200px">
@@ -33,12 +33,16 @@ import HeaderFooter from "../components/HeaderFooter";
 export default {
   data() {
     return {
-      navShow: false
+      navShow: false,
+      slideShow:false
     };
   },
   components: {
     HeaderFooter
   },
+  mounted(){
+  }
+
 };
 </script>
 

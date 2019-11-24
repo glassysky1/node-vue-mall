@@ -213,7 +213,7 @@
 
 <script>
 import dayjs from "dayjs";
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import HeaderFooter from "../components/HeaderFooter";
 export default {
   filters: {
@@ -251,7 +251,13 @@ export default {
     },
     contrastProductId() {
       this._fetchContrastProduct();
+    },
+    refreshCartListFlag() {
+      this._fechCartList();
     }
+  },
+  computed: {
+    ...mapGetters(["refreshCartListFlag"])
   },
   components: {
     HeaderFooter
@@ -271,6 +277,7 @@ export default {
         productName: this.productName,
         productSubtitle: this.productSubtitle,
         productPrice: this.productPrice,
+        productCoverImage: this.productCoverImage,
         productNum: this.num,
         storageId: this.storageId,
         storageName: this.storageName,
@@ -327,6 +334,7 @@ export default {
         this.productName = this.product.name;
         this.productSubtitle = this.product.subtitle;
         this.productPrice = storage.nowPrice;
+        this.productCoverImage = this.product.coverImage;
         this.storageName = storage.name;
         this.colorName = color.name;
       }

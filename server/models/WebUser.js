@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.set('useFindAndModify',false)
+mongoose.set('useFindAndModify', false)
 const bcrypt = require('bcryptjs')
 const schema = new mongoose.Schema({
   username: { type: String, unique: true },
@@ -24,6 +24,7 @@ const schema = new mongoose.Schema({
     {
       productId: { type: String },
       productName: { type: String },
+      productCoverImage: { type: String },
       productPrice: { type: Number },
       productSubtitle: { type: String },
       productNum: { type: Number },
