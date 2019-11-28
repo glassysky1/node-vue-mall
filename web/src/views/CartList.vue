@@ -49,7 +49,7 @@
                 v-model="cart.productNum"
                 @change="handleChange(cart.productNum,index)"
                 :min="1"
-                :max="10"
+                :max="cart.productMaxNum"
                 label="描述文字"
               ></el-input-number>
             </td>
@@ -64,8 +64,14 @@
       </table>
       <div class="settle clearfix">
         <div class="settle-right fr">
-          <span class="selected-num">已选择<i></i>件商品</span>
-          <span class="total-price">总价: <span class="text">￥1515554</span></span>
+          <span class="selected-num">
+            已选择
+            <i>{{selectCount}}</i>件商品
+          </span>
+          <span class="total-price">
+            总价:
+            <span class="text">￥{{selectTotalProductPrice}}</span>
+          </span>
           <button class="btn">去结算</button>
         </div>
       </div>
@@ -82,6 +88,8 @@ export default {
     return {
       cartList: [],
       totalProductNum: 0,
+      selectCount: 0,
+      selectTotalProductPrice: 0,
       all: true
     };
   },
@@ -89,6 +97,7 @@ export default {
     async deleteCart(index) {
       this.cartList.splice(index, 1);
       await this.$http.put("cartList", this.cartList);
+      this._fechCartList();
     },
     async handleChange(productNum, index) {
       console.log(productNum, index);
@@ -98,6 +107,7 @@ export default {
         }
       });
       await this.$http.put("cartList", this.cartList);
+      this._fechCartList();
     },
     async selectItem(checked, index) {
       let count = 0;
@@ -115,6 +125,7 @@ export default {
         this.all = false;
       }
       await this.$http.put("cartList", this.cartList);
+      this._fechCartList();
     },
     async selectAll() {
       this.all = !this.all;
@@ -122,6 +133,7 @@ export default {
         cart.checked = this.all;
       });
       await this.$http.put("cartList", this.cartList);
+      this._fechCartList();
     },
     async _fechCartList() {
       const res = await this.$http.get("user");
@@ -130,28 +142,28 @@ export default {
       this.totalProductNum = 0;
       this.totalProductPrice = 0;
       let count = 0;
+      this.selectCount = 0;
+      this.selectTotalProductPrice = 0;
       this.cartList.forEach((cart, index) => {
         this.totalProductNum += cart.productNum;
         this.totalProductPrice += cart.productNum * cart.productPrice;
-
+        if (cart.checked) {
+          this.selectCount += cart.productNum;
+          this.selectTotalProductPrice += cart.productNum * cart.productPrice;
+        }
         if (cart.checked) {
           count++;
         }
       });
       if (count === this.cartList.length) {
         this.all = true;
-        console.log(1);
       } else {
         this.all = false;
       }
-    },
-    async _fechSelectCartList(){
-
     }
   },
   created() {
     this._fechCartList();
-    this._fechSelectCartList()
   }
 };
 </script>
@@ -204,7 +216,7 @@ export default {
       line-height 50px
       .selected-num
         margin-right 5px
-        i 
+        i
           font-weight bold
           color #E4231A
           padding 0 2px
@@ -221,5 +233,4 @@ export default {
         color #fff
         font-size 18px
         font-weight bold
-
 </style>

@@ -8,6 +8,7 @@ import PersonalCenter from "../views/PersonalCenter.vue";
 import AddressLIst from "../views/AddressLIst.vue";
 import CartList from "../views/CartList.vue";
 import OrderList from "../views/OrderList.vue";
+import OrderSettlement from "../views/OrderSettlement.vue";
 Vue.use(VueRouter)
 
 const routes = [
@@ -45,6 +46,10 @@ const routes = [
         component:AddressLIst
       },
     ]
+  },
+  {
+    path:'/order-settlement',
+    component: OrderSettlement 
   }
 ]
 

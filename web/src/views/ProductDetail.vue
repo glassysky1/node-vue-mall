@@ -279,6 +279,7 @@ export default {
         productPrice: this.productPrice,
         productCoverImage: this.productCoverImage,
         productNum: this.num,
+        productMaxNum: this.stock,
         storageId: this.storageId,
         storageName: this.storageName,
         colorId: this.colorId,

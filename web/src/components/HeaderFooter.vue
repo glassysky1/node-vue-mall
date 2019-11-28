@@ -1,6 +1,6 @@
 <template>
   <div class="header-footer" @click="closeSlider">
-    <div class="clearfix shortcut">
+    <div class="clearfix shortcut" v-show="shortcutShow">
       <div class="w">
         <ul class="fr">
           <li v-if="user.username" class="login" @mouseover="enter2" @mouseleave="mouseleave2">
@@ -29,6 +29,7 @@
       <div class="w">
         <h1 @click="$router.push('/')" class="logo">
           <a class="logo_tit"></a>
+          <span class="title">{{title}}</span>
         </h1>
         <div class="search" v-show="navShow">
           <input type="text" placeholder="搜索商品" class="box" />
@@ -92,7 +93,7 @@
       <h3 class="title">村头大白鹅</h3>
     </footer>
     <div ref="rightSlider" v-show="slideShow" @click.stop class="right-slider">
-      <div class="right clearfix">  
+      <div class="right clearfix">
         <div class="cart-list" v-show="selectIndex===0">
           <h2 class="title font14">我的购物车</h2>
           <div class="no-result" v-show="!cartList.length">
@@ -192,7 +193,15 @@ export default {
       type: Boolean,
       default: true
     },
-    slideShow:{
+    slideShow: {
+      type: Boolean,
+      default: true
+    },
+    title: {
+      type: String,
+      default: "大白鹅商城欢迎您"
+    },
+    shortcutShow:{
       type:Boolean,
       default:true
     }
@@ -328,7 +337,6 @@ export default {
   created() {
     this._fetchBrands();
     this._fetchUser();
-    
   }
 };
 </script>
@@ -528,6 +536,11 @@ export default {
         display block
         background url('../assets/logo.jpg')
         background-size contain
+        .title
+          font-size 22px
+          position absolute
+          top 50px
+          left 130px
       .search
         position absolute
         right 400px

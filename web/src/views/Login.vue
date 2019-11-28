@@ -1,11 +1,6 @@
 <template>
   <div class="register">
-    <m-footer>
-      <div class="w">
-        <div class="logo" @click="$router.push('/')">
-          <img src="../assets/logo.jpg" height="120px" width="120" alt />
-          <span class="text">欢迎登陆</span>
-        </div>
+    <header-footer title="欢迎登陆" :shortcutShow = "shortcutShow" :slideShow = "slideShow" :navShow="navShow"> 
         <el-card class="card">
           <el-form
             :model="ruleForm"
@@ -26,16 +21,19 @@
             </el-form-item>
           </el-form>
         </el-card>
-      </div>
-    </m-footer>
+    </header-footer>
   </div>
 </template>
 <script>
 import _ from "lodash";
+import HeaderFooter from "../components/HeaderFooter";
 import MFooter from "../components/Footer";
 export default {
   data() {
     return {
+      navShow: false,
+      slideShow:false,
+      shortcutShow:false,
       statusMsg: "",
       flag: false,
       usernames: [],
@@ -65,7 +63,7 @@ export default {
     };
   },
   components: {
-    MFooter
+    HeaderFooter
   },
   methods: {
     login() {
@@ -93,14 +91,9 @@ export default {
 
 <style lang="stylus" scoped>
 .register
-  .w
-    margin-top 30px
-    .logo
-      .text
-        font-size 22px
-    .card
-      margin 100px auto
-      width 500px
+  .card
+    margin 100px auto 200px
+    width 500px
 </style>
 
 

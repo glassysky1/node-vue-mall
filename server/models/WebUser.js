@@ -28,6 +28,7 @@ const schema = new mongoose.Schema({
       productPrice: { type: Number },
       productSubtitle: { type: String },
       productNum: { type: Number },
+      productMaxNum: { type: Number },
       storageId: { type: String },
       storageName: { type: String },
       colorId: { type: String },
@@ -35,7 +36,15 @@ const schema = new mongoose.Schema({
       checked: { type: Boolean },
     }
   ],
-  orderList: { type: Array }
+  orderList: [
+    {
+      address: { type: Object },
+      cartList: { type: Array },
+    },
+    {
+      timestamps: true//时间戳创建时间
+    }
+  ]
 })
 
 module.exports = mongoose.model('WebUser', schema)
