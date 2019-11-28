@@ -1,6 +1,6 @@
 <template>
   <div class="personal-center">
-    <header-footer :slideShow = "slideShow" :navShow="navShow">
+    <header-footer title="个人中心" :slideShow = "slideShow" :navShow="navShow">
       <div class="w">
         <el-container style="min-height: 80vh; border: 1px solid #eee">
           <el-aside width="200px">
