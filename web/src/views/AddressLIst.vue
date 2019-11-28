@@ -35,7 +35,7 @@
           </table>
         </div>
         <div class="setting">
-          <a class="default" @click="setDefault(index)">设为默认</a>
+          <a class="default" v-show="!address.isDefault" @click="setDefault(index)">设为默认</a>
           <a class="edit" @click="editAddress(address,index)">编辑</a>
         </div>
       </div>
@@ -43,41 +43,43 @@
     <div class="no-result" v-else>
       <span class="text">暂无地址哎</span>
     </div>
-    <div class="bounce-address" v-show="addressShowFlag">
-      <div class="top">
-        <h3 class="title font16">{{editFlag?'编辑':'新建'}}收货地址</h3>
-        <i class="el-icon-close" @click="close"></i>
-      </div>
-      <div class="center">
-        <el-form
-          :model="ruleForm"
-          :rules="rules"
-          ref="ruleForm"
-          label-width="100px"
-          class="demo-ruleForm"
-        >
-          <el-form-item label="收货人" prop="username">
-            <el-input v-model="ruleForm.username"></el-input>
-          </el-form-item>
-          <el-form-item label="所在城市" prop="city">
-            <el-input v-model="ruleForm.city"></el-input>
-          </el-form-item>
-          <el-form-item label="所在街道" prop="streetName">
-            <el-input v-model="ruleForm.streetName"></el-input>
-          </el-form-item>
-          <el-form-item label="邮编" prop="postCode">
-            <el-input v-model="ruleForm.postCode" type="number" maxlength="6"></el-input>
-          </el-form-item>
-          <el-form-item label="手机号码" prop="tel">
-            <el-input v-model="ruleForm.tel" type="number" maxlength="11"></el-input>
-          </el-form-item>
-          <el-form-item label="设为默认" prop="isDefault">
-            <el-switch v-model="ruleForm.isDefault"></el-switch>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="save">保存</el-button>
-          </el-form-item>
-        </el-form>
+    <div class="bg-layer" v-show="addressShowFlag">
+      <div class="bounce-address" v-show="addressShowFlag">
+        <div class="top">
+          <h3 class="title font16">{{editFlag?'编辑':'新建'}}收货地址</h3>
+          <i class="el-icon-close" @click="close"></i>
+        </div>
+        <div class="center">
+          <el-form
+            :model="ruleForm"
+            :rules="rules"
+            ref="ruleForm"
+            label-width="100px"
+            class="demo-ruleForm"
+          >
+            <el-form-item label="收货人" prop="username">
+              <el-input v-model="ruleForm.username"></el-input>
+            </el-form-item>
+            <el-form-item label="所在城市" prop="city">
+              <el-input v-model="ruleForm.city"></el-input>
+            </el-form-item>
+            <el-form-item label="所在街道" prop="streetName">
+              <el-input v-model="ruleForm.streetName"></el-input>
+            </el-form-item>
+            <el-form-item label="邮编" prop="postCode">
+              <el-input v-model="ruleForm.postCode" type="number" maxlength="6"></el-input>
+            </el-form-item>
+            <el-form-item label="手机号码" prop="tel">
+              <el-input v-model="ruleForm.tel" type="number" maxlength="11"></el-input>
+            </el-form-item>
+            <el-form-item label="设为默认" prop="isDefault">
+              <el-switch v-model="ruleForm.isDefault"></el-switch>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="save">保存</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
       </div>
     </div>
   </div>
@@ -313,28 +315,34 @@ export default {
     margin-top 200px
     .text
       font-size 30px
-  .bounce-address
-    border 4px solid rgba(0, 0, 0, 0.3)
+  .bg-layer
     position absolute
-    background-color #fff
-    width 800px
-    left 0
+    height 100%
+    width 100%
     top 0
-    height 500px
-    .top
-      position relative
-      height 30px
-      line-height 30px
-      background-color #F3F3F3
-      border-bottom 2px solid #cccccc
-      padding 0 10px
-      .title
-        font-weight 700
-      .el-icon-close
-        position absolute
-        right 10px
-        top 5px
-        font-size 20px
+    .bounce-address
+      border 4px solid rgba(0, 0, 0, 0.3)
+      position absolute
+      background-color #fff
+      top 50px
+      left 50%
+      transform translate3d(-50%,0,0)
+      width 800px
+      height 500px
+      .top
+        position relative
+        height 30px
+        line-height 30px
+        background-color #F3F3F3
+        border-bottom 2px solid #cccccc
+        padding 0 10px
+        .title
+          font-weight 700
+        .el-icon-close
+          position absolute
+          right 10px
+          top 5px
+          font-size 20px
   .add-btn
     background-color #fff
     padding 5px 10px

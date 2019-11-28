@@ -40,6 +40,10 @@ const schema = new mongoose.Schema({
     {
       address: { type: Object },
       cartList: { type: Array },
+      status: { type: Number }, //0是带发货，1是已发货，带收货，2是收货成功
+      paymentMethod: { type: Number },
+      totalPrice: { type: Number },
+      totalNumber:{type:Number}
     },
     {
       timestamps: true//时间戳创建时间

@@ -72,7 +72,7 @@
             总价:
             <span class="text">￥{{selectTotalProductPrice}}</span>
           </span>
-          <button class="btn">去结算</button>
+          <button class="btn" @click="settle">去结算</button>
         </div>
       </div>
     </div>
@@ -134,6 +134,16 @@ export default {
       });
       await this.$http.put("cartList", this.cartList);
       this._fechCartList();
+    },
+    settle(){
+      if (!this.selectCount) {
+        this.$message({
+            type: "warning",
+            message: "未选择商品"
+          });
+          return
+      }
+      this.$router.push('/order-settlement')
     },
     async _fechCartList() {
       const res = await this.$http.get("user");
