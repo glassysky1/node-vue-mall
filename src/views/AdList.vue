@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>广告位列表</h1>
-    <el-table :data="items">
+    <el-table height="250" :data="items">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="coverImage" label="广告位封面">

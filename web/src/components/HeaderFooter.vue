@@ -19,7 +19,7 @@
             <a class="col-red" @click="$router.push('/register')">免费注册</a>
           </li>
           <li class="space"></li>
-          <li>
+          <li @click="$router.push('/personal-center/order-list')">
             <a>我的订单</a>
           </li>
         </ul>
@@ -540,6 +540,7 @@ export default {
         display block
         background url('../assets/logo.jpg')
         background-size contain
+        border-radius 50%
         .title
           font-size 22px
           position absolute

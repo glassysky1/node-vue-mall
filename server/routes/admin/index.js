@@ -87,10 +87,50 @@ module.exports = app => {
 
   const WebUser = require('../../models/WebUser')
   //订单接口
-  app.use('/admin/api/orderList', async (req, res) => {
+  app.get('/admin/api/orderList', async (req, res) => {
     const webUsers = await WebUser.find()
-    console.log(webUsers.length);
-    res.send(webUsers)
+    let orders = []
+    webUsers.map((webUser, index) => {
+      orders.push(...webUser.orderList)
+    })
+    res.send(orders)
+  })
+
+  //改变订单状态
+  app.put('/admin/api/orderList/:id', async (req, res) => {
+    const webUsers = await WebUser.find()
+    let webUserIndex = 0
+    let orderIndex = 0
+    let webUserId = ''
+    let orderId = ''
+    let orderList = []
+    webUsers.forEach((webUser, index) => {
+      webUser.orderList.forEach((order, index1) => {
+        if (order._id.toString() === req.params.id) {
+          webUserId = webUser._id
+          orderId = order._id
+          webUserIndex = index
+          orderIndex = index1
+          order.status = 1
+        }
+      })
+    })
+    webUsers.forEach((webUser,index)=>{
+      
+      if(webUser._id === webUserId){
+        orderList = webUser.orderList
+      }
+    })
+    console.log(orderList);
+    
+
+    //  console.log(webUserIndex,orderIndex,webUserId,orderId);
+    const webUser = await WebUser.findByIdAndUpdate(webUserId,
+      {
+        orderList
+      })
+
+    res.send(webUser)
   })
 
 }

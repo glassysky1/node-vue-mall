@@ -362,7 +362,8 @@ export default {
         status: 0,
         totalPrice: this.selectTotalProductPrice,
         totalNumber: this.selectCount,
-        paymentMethod: this.paymentMethod
+        paymentMethod: this.paymentMethod,
+        createTime:Date.now()
       });
       await this.$http.put("orderList", this.orderList);
       this.$message({
