@@ -111,8 +111,6 @@ export default {
   methods: {
     register() {
       //验证整张表是否通过
-      console.log(2);
-
       this.$refs["ruleForm"].validate(async valid => {
         if (valid) {
           let model = {
@@ -120,7 +118,7 @@ export default {
             password: this.ruleForm.pwd
           };
           await this.$http.post("rest/web_users", model);
-          this.$router.push("/register");
+          this.$router.push("/login");
           this.$message({
             type: "success",
             message: "注册成功"

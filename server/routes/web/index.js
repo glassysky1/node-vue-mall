@@ -117,6 +117,12 @@ module.exports = app => {
     })
     res.send(model)
   })
+  app.put('/web/api/orderList', authMiddleware(options), async (req, res) => {
+    const model = await WebUser.findByIdAndUpdate(req.user._id,{
+      orderList:req.body
+    })
+    res.send(model)
+  })
   //错误处理函数
   app.use(async (err, req, res, next) => {
     //没有状态码就报500错误

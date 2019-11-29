@@ -111,7 +111,7 @@
               <span class="username">{{addressList[0].username}} {{addressList[0].tel}}</span>
             </div>
             <div class="submit">
-              <button class="btn fr">提交订单</button>
+              <button class="btn fr" @click="submitOrder">{{paymentMethod===0?'提交订单':'货到付款'}}</button>
             </div>
           </div>
         </div>
@@ -355,9 +355,43 @@ export default {
       this.moreFlag = false;
       this._fetchUser();
     },
+    async submitOrder() {
+      this.orderList.unshift({
+        address: this.addressList[0],
+        cartList: this.selectCartList,
+        status: 0,
+        totalPrice: this.selectTotalProductPrice,
+        totalNumber: this.selectCount,
+        paymentMethod: this.paymentMethod
+      });
+      await this.$http.put("orderList", this.orderList);
+      this.$message({
+        type: "success",
+        message: "购买成功"
+      });
+      //把用户购物车里面已勾选的全删除
+      let unSelectCartList = [];
+      this.cartList.forEach((cart, index) => {
+        if (!cart.checked) {
+          unSelectCartList.push(cart);
+        }
+      });
+      this.$http.put("cartList", unSelectCartList);
+      //把默认地址放在首位
+      let defaultIndex = 0;
+      this.addressList.forEach((address, index) => {
+        if (address.isDefault) {
+          defaultIndex = index;
+        }
+      });
+      let defaultAddress = this.addressList.splice(defaultIndex, 1);
+      this.addressList.unshift(defaultAddress[0]);
+      await this.$http.put("addressList", this.addressList);
+    },
     async _fetchUser() {
       const res = await this.$http.get("user");
       this.addressList = res.data.addressList;
+      this.orderList = res.data.orderList;
       if (!this.moreFlag) {
         this.$refs.addressList.style.height = "40px";
         this.addressList = this.addressList.slice(0, 1);

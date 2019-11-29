@@ -92,7 +92,7 @@
     <footer class="footer">
       <h3 class="title">村头大白鹅</h3>
     </footer>
-    <div ref="rightSlider" v-show="slideShow" @click.stop class="right-slider">
+    <div ref="rightSlider" v-if="user._id" v-show="slideShow" @click.stop class="right-slider">
       <div class="right clearfix">
         <div class="cart-list" v-show="selectIndex===0">
           <h2 class="title font14">我的购物车</h2>
@@ -201,9 +201,9 @@ export default {
       type: String,
       default: "大白鹅商城欢迎您"
     },
-    shortcutShow:{
-      type:Boolean,
-      default:true
+    shortcutShow: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -321,7 +321,11 @@ export default {
     },
     async _fetchUser() {
       const res = await this.$http.get("user");
+
       this.user = res.data;
+        if (!this.user._id.length) {
+          return;
+        }
       this.cartList = res.data.cartList;
       this.totalProductNum = 0;
       this.totalProductPrice = 0;

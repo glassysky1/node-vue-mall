@@ -247,6 +247,8 @@ export default {
       }
     },
     id() {
+      this.storageIndex = 0;
+      this.colorIndex = 0;
       this._fetchProduct();
     },
     contrastProductId() {

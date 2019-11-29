@@ -9,6 +9,8 @@ import ProductEdit from "../views/ProductEdit.vue";
 import ProductList from "../views/ProductList.vue";
 import AdminUserEdit from "../views/AdminUserEdit.vue";
 import AdminUserList from "../views/AdminUserList.vue";
+import WebUserList from "../views/WebUserList.vue";
+import OrderList from "../views/OrderList.vue";
 import SalesVolumeList from "../views/SalesVolumeList.vue";
 import Login from "../views/Login.vue";
 import StockList from "../views/StockList.vue";
@@ -80,7 +82,14 @@ const routes = [
         path: '/admin_users/list',
         component: AdminUserList
       },
-
+      {
+        path: '/web_users/list',
+        component: WebUserList
+      },
+      {
+        path:'/orders/list',
+        component:OrderList
+      }
     ],
   },
   {

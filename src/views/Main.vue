@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100vh;">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-menu router :default-openeds="['1']" unique-opened :default-active="$route.path">
+      <el-menu router :default-openeds="['4']" unique-opened :default-active="$route.path">
         <el-submenu index="1" >
           <template slot="title">
             <i class="el-icon-message"></i>商品管理
@@ -33,6 +33,24 @@
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3" >
+          <template slot="title">
+            <i class="el-icon-message"></i>用户管理
+          </template>
+          <el-menu-item-group>
+            <template slot="title">用户管理</template>
+            <el-menu-item index="/web_users/list">用户列表</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="4" >
+          <template slot="title">
+            <i class="el-icon-message"></i>订单管理
+          </template>
+          <el-menu-item-group>
+            <template slot="title">订单管理</template>
+            <el-menu-item index="/orders/list">订单列表</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="5" >
           <template slot="title">
             <i class="el-icon-message"></i>系统设置
           </template>

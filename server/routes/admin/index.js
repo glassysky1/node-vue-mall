@@ -65,25 +65,32 @@ module.exports = app => {
 
   const Brand = require('../../models/Brand')
   // 测试接口
-  app.use('/admin/api/brandList',async (req,res) =>{
+  app.use('/admin/api/brandList', async (req, res) => {
     //聚合函数
     const brands = await Brand.aggregate([
       {
-        $lookup:{
-          from:'products',
-          localField:'_id',
-          foreignField:'brand',
-          as:'productList'
+        $lookup: {
+          from: 'products',
+          localField: '_id',
+          foreignField: 'brand',
+          as: 'productList'
         }
       }
     ])
-    brands.map(brand =>{
-      brand.productList.map(product =>{
+    brands.map(brand => {
+      brand.productList.map(product => {
         product.brandName = brand.name
       })
     })
     res.send(brands)
   })
 
+  const WebUser = require('../../models/WebUser')
+  //订单接口
+  app.use('/admin/api/orderList', async (req, res) => {
+    const webUsers = await WebUser.find()
+    console.log(webUsers.length);
+    res.send(webUsers)
+  })
 
 }
