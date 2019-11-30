@@ -1,9 +1,19 @@
 <template>
   <div class="order-list">
     <div class="top">
-      <span v-for="(item,index) in selectItems" @click="selectIndex=index" :class="{'active':index===selectIndex}" :key="index">{{item}}</span>
+      <span
+        v-for="(item,index) in selectItems"
+        @click="selectIndex=index"
+        :class="{'active':index===selectIndex}"
+        :key="index"
+      >{{item}}</span>
     </div>
-    <div class="content" v-show="matchOrder(order.status)"  v-for="(order,index) in orderList" :key="index">
+    <div
+      class="content"
+      v-show="matchOrder(order.status)"
+      v-for="(order,index1) in orderList"
+      :key="index1"
+    >
       <div class="header">
         <div class="header-top">
           <span class="time">{{order.createTime}}</span>
@@ -19,7 +29,7 @@
           <span class="order-status" v-if="order.status===0">订单状态:待发货</span>
           <span class="order-status" v-if="order.status===1">
             订单状态:待收货
-            <button>点击收货</button>
+            <button @click="receive(order._id)">点击收货</button>
           </span>
           <span class="order-status" v-if="order.status===2">订单状态:已收货</span>
         </div>
@@ -55,19 +65,27 @@
 export default {
   data() {
     return {
-      selectIndex:0,
+      selectIndex: 0,
       selectItems: ["全部订单", "待发货", "待收货", "已收货"],
       orderList: []
     };
   },
   methods: {
-    matchOrder(status){
+    async receive(orderId) {
+      this.orderList.forEach((order, index) => {
+        if (order._id === orderId) {
+          order.status = 2;
+        }
+      });
+      await this.$http.put("orderList", this.orderList);
+    },
+    matchOrder(status) {
       //0全部订单，1待发货，2待收货，3已收货
       //           0待发货 1到收货 2 已收货
-      if (this.selectIndex ===0) {
-        return true
-      }else{
-        return status +1 ===this.selectIndex
+      if (this.selectIndex === 0) {
+        return true;
+      } else {
+        return status + 1 === this.selectIndex;
       }
     },
     async _fetchOrderList() {

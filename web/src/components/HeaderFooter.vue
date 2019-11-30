@@ -136,7 +136,7 @@
       </div>
       <div class="left clearfix">
         <ul class="ac">
-          <li
+          <!-- <li
             class="order"
             ref="order"
             @click="order"
@@ -147,7 +147,7 @@
             <transition name="slide1">
               <span class="text" v-show="orderShow">我的订单</span>
             </transition>
-          </li>
+          </li> -->
           <li class="cart" ref="cart" @click="cart">
             <i class="el-icon-shopping-cart-2"></i>
             <div>购物车</div>
