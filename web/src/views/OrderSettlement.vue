@@ -356,6 +356,13 @@ export default {
       this._fetchUser();
     },
     async submitOrder() {
+      if(!this.addressList.length){
+          this.$message({
+        type: "waring",
+        message: "请添加地址"
+      });
+        return
+      }
       this.orderList.unshift({
         address: this.addressList[0],
         cartList: this.selectCartList,
@@ -388,6 +395,7 @@ export default {
       let defaultAddress = this.addressList.splice(defaultIndex, 1);
       this.addressList.unshift(defaultAddress[0]);
       await this.$http.put("addressList", this.addressList);
+      this.$router.push('/')
     },
     async _fetchUser() {
       const res = await this.$http.get("user");

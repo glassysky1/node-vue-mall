@@ -10,7 +10,7 @@
     </div>
     <div
       class="content"
-      v-show="matchOrder(order.status)"
+      v-show="matchOrder(order.status) && orderList.length"
       v-for="(order,index1) in orderList"
       :key="index1"
     >
@@ -58,6 +58,7 @@
         </tr>
       </table>
     </div>
+    <div v-show="!orderList.length" class="no-result">没有订单哎</div>
   </div>
 </template>
 
@@ -109,6 +110,11 @@ export default {
       &.active
         color #ec393c
         border-bottom 2px solid #ec393c
+  .no-result
+    margin-left 50%
+    margin-top 200px
+    transform translate3d(-50%,0,0)
+    font-size 18px
   .content
     margin-top 20px
     border 1px solid #cccccc

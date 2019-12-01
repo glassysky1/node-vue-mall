@@ -1,5 +1,6 @@
 module.exports = app => {
   const express = require('express')
+  const assert = require('http-assert')
   const router = express.Router(
     {
       mergeParams: true
@@ -96,6 +97,7 @@ module.exports = app => {
     res.send(orders)
   })
 
+  const Product = require('../../models/Product')
   //改变订单状态
   app.put('/admin/api/orderList/:id', async (req, res) => {
     const webUsers = await WebUser.find()
@@ -104,6 +106,7 @@ module.exports = app => {
     let webUserId = ''
     let orderId = ''
     let orderList = []
+    let changeCartList = []
     webUsers.forEach((webUser, index) => {
       webUser.orderList.forEach((order, index1) => {
         if (order._id.toString() === req.params.id) {
@@ -112,18 +115,54 @@ module.exports = app => {
           webUserIndex = index
           orderIndex = index1
           order.status = 1
+          changeCartList = order.cartList
         }
       })
     })
-    webUsers.forEach((webUser,index)=>{
-      
-      if(webUser._id === webUserId){
+    webUsers.forEach((webUser, index) => {
+
+      if (webUser._id === webUserId) {
         orderList = webUser.orderList
       }
     })
-    console.log(orderList);
-    
 
+    //把产品列表提出来,发货的时候数量减减
+    changeCartList.forEach(async (cart, index) => {
+      // console.log(cart.productId);
+      // console.log(cart.storageId);
+      // console.log(cart.colorId);
+      // console.log(cart.productNum);
+
+      const product = await Product.findById(cart.productId)
+      product.storages.forEach((storage, index) => {
+        if (storage._id.toString() === cart.storageId) {
+
+          storage.colors.forEach((color, index) => {
+            if (color._id.toString() === cart.colorId) {
+              let flag = false
+              if (color.stock - cart.productNum >= 0) {
+                flag = true
+              }
+              if (!flag) {
+                return res.status(422).send({
+                  message: `库存不足，请及时添加：[${cart.productName},${cart.storageName},${cart.colorName}]`
+                })
+              }
+              // assert(flag, 422, `库存不足，请及时添加：[${cart.productName},${cart.storageName},${cart.colorName}]`)
+              color.stock = color.stock - cart.productNum
+              color.salesVolume = color.salesVolume + cart.productNum
+            }
+          })
+        }
+
+      })
+
+      await Product.findByIdAndUpdate(cart.productId, {
+        storages: product.storages
+      }
+      )
+
+    })
     //  console.log(webUserIndex,orderIndex,webUserId,orderId);
     const webUser = await WebUser.findByIdAndUpdate(webUserId,
       {
@@ -132,5 +171,13 @@ module.exports = app => {
 
     res.send(webUser)
   })
+  //错误处理函数
+  app.use(async (err, req, res, next) => {
+    //没有状态码就报500错误
+    console.log(1);
 
+    res.status(err.statusCode || 500).send({
+      message: err.message
+    })
+  })
 }
