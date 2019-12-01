@@ -162,6 +162,7 @@
 <script>
 import HeaderFooter from "../components/HeaderFooter";
 export default {
+  
   data() {
     return {
       editIndex: "",

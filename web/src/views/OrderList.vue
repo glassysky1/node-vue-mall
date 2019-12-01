@@ -16,7 +16,7 @@
     >
       <div class="header">
         <div class="header-top">
-          <span class="time">{{order.createTime}}</span>
+          <span class="time">{{ parseInt(order.createTime) |formatDate }}</span>
           <span class="order-code">
             订单号:
             <i>{{order._id}}</i>
@@ -63,7 +63,25 @@
 </template>
 
 <script>
+
 export default {
+   filters: {
+      formatDate: function (value) {
+      let date = new Date(value)
+    let y = date.getFullYear()
+    let MM = date.getMonth() + 1
+    MM = MM < 10 ? ('0' + MM) : MM
+    let d = date.getDate()
+    d = d < 10 ? ('0' + d) : d
+    let h = date.getHours()
+    h = h < 10 ? ('0' + h) : h
+    let m = date.getMinutes()
+    m = m < 10 ? ('0' + m) : m
+    let s = date.getSeconds()
+    s = s < 10 ? ('0' + s) : s
+    return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s
+      }
+    },
   data() {
     return {
       selectIndex: 0,
@@ -113,7 +131,7 @@ export default {
   .no-result
     margin-left 50%
     margin-top 200px
-    transform translate3d(-50%,0,0)
+    transform translate3d(-50%, 0, 0)
     font-size 18px
   .content
     margin-top 20px
@@ -156,7 +174,7 @@ export default {
               width 180px
               margin-left 20px
               display inline-block
-              height 40px
+              height 35px
               overflow hidden
               margin-top 20px
               .text
