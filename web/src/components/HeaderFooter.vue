@@ -35,7 +35,12 @@
           <input @input="input" type="text" v-model="query" placeholder="搜索商品" class="box" />
           <button class="btn" @click="searchQuery">搜索</button>
           <div class="suggest">
-            <div @click="suggest(item._id)" class="name" v-for="(item,index) in resultList" :key="index">{{item.name}}</div>
+            <div
+              @click="suggest(item._id)"
+              class="name"
+              v-for="(item,index) in resultList"
+              :key="index"
+            >{{item.name}}</div>
           </div>
         </div>
       </div>
@@ -176,7 +181,7 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      resultList:[],
+      resultList: [],
       query: "",
       orderShow: false,
       codeShow: false,
@@ -220,23 +225,21 @@ export default {
     }
   },
   methods: {
-    searchQuery(){
-      
-      if(!this.query.trim().length){
-        return
+    searchQuery() {
+      if (!this.query.trim().length) {
+        return;
       }
-      this.$router.push(`/search/${this.query}`)
-      
+      this.resultList=[]
+      this.$router.push(`/search/${this.query}`);
     },
-    suggest(id){
-      this.$router.push(`/product-details/${id}`)
-      this.query =""
-
+    suggest(id) {
+      this.$router.push(`/product-details/${id}`);
+      this.query = "";
     },
     async input() {
       //如果输入为空，则返回
       if (!this.query.trim().length) {
-        this.resultList = []
+        this.resultList = [];
         return;
       }
 
@@ -367,6 +370,13 @@ export default {
     ...mapMutations({
       setCartListRefresh: "SET_CART_LIST_REFRESH"
     })
+  },
+  mounted(){
+    if(this.$router.path!='/'){
+      console.log(1);
+      
+      this.resultList=[]
+    }
   },
   created() {
     this._fetchBrands();
