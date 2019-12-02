@@ -118,10 +118,18 @@ module.exports = app => {
     res.send(model)
   })
   app.put('/web/api/orderList', authMiddleware(options), async (req, res) => {
-    const model = await WebUser.findByIdAndUpdate(req.user._id,{
-      orderList:req.body
+    const model = await WebUser.findByIdAndUpdate(req.user._id, {
+      orderList: req.body
     })
     res.send(model)
+  })
+  const Product = require('../../models/Product')
+  //根据关键词返回商品
+  app.post('/web/api/keyword', async (req, res) => {
+    const model = await Product.find({
+      name: new RegExp(req.body.query)
+    })
+    res.send(model.slice(0,6))
   })
   //错误处理函数
   app.use(async (err, req, res, next) => {

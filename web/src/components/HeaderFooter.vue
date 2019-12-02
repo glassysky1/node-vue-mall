@@ -32,8 +32,11 @@
           <span class="title">{{title}}</span>
         </h1>
         <div class="search" v-show="navShow">
-          <input type="text" placeholder="搜索商品" class="box" />
-          <button class="btn">搜索</button>
+          <input @input="input" type="text" v-model="query" placeholder="搜索商品" class="box" />
+          <button class="btn" @click="searchQuery">搜索</button>
+          <div class="suggest">
+            <div @click="$router.push(`/product-details/${item._id}`)" class="name" v-for="(item,index) in resultList" :key="index">{{item.name}}</div>
+          </div>
         </div>
       </div>
     </header>
@@ -147,7 +150,7 @@
             <transition name="slide1">
               <span class="text" v-show="orderShow">我的订单</span>
             </transition>
-          </li> -->
+          </li>-->
           <li class="cart" ref="cart" @click="cart">
             <i class="el-icon-shopping-cart-2"></i>
             <div>购物车</div>
@@ -173,6 +176,8 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
+      resultList:[],
+      query: "",
       orderShow: false,
       codeShow: false,
       brandListIndex: "",
@@ -215,6 +220,24 @@ export default {
     }
   },
   methods: {
+    searchQuery(){
+      if(!this.query.trim().length){
+        return
+      }
+      this.$router.push(`/search/${this.query}`)
+    },
+    async input() {
+      //如果输入为空，则返回
+      if (!this.query.trim().length) {
+        this.resultList = []
+        return;
+      }
+
+      const res = await this.$http.post("keyword", {
+        query: this.query
+      });
+      this.resultList = res.data;
+    },
     async deleteCartItem(index) {
       this.cartList.splice(index, 1);
       await this.$http.put("cartList", this.cartList);
@@ -323,9 +346,9 @@ export default {
       const res = await this.$http.get("user");
 
       this.user = res.data;
-        if (!this.user._id.length) {
-          return;
-        }
+      if (!this.user._id.length) {
+        return;
+      }
       this.cartList = res.data.cartList;
       this.totalProductNum = 0;
       this.totalProductPrice = 0;
@@ -550,6 +573,16 @@ export default {
         position absolute
         right 400px
         top 50px
+        .suggest
+          position absolute
+          top 35px
+          left 0
+          width 412px
+          cursor pointer
+          box-shadow 1px 2px 1px rgba(0, 0, 0, 0.2)
+          .name
+            margin-left 12px
+            line-height 20px
         .box
           border 3px solid $col-red
           width 400px

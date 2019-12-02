@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ProductDetail from '../views/ProductDetail.vue'
+import Search from '../views/Search.vue'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import PersonalCenter from "../views/PersonalCenter.vue";
@@ -19,6 +20,11 @@ const routes = [
   {
     path: '/product-details/:id',
     component: ProductDetail,
+    props: true
+  },
+  {
+    path: '/search/:query',
+    component: Search,
     props: true
   },
   {
