@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>品牌列表</h1>
-    <el-table height="250" :data="items.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))">
+    <el-table height="80vh" :data="items.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
       <el-table-column prop="name" label="商品名称"></el-table-column>
       <el-table-column prop="brand.name" label="所属品牌"></el-table-column>

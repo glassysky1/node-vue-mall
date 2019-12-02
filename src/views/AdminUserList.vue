@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>管理员列表</h1>
-    <el-table height="250" :data="items">
+    <el-table height="80vh" :data="items">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
       <el-table-column prop="username" label="用户名"></el-table-column>
       <el-table-column

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>订单列表</h1>
-    <el-table height="780px" :data="items">
+    <el-table height="80vh" :data="items">
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form

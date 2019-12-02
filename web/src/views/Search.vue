@@ -21,7 +21,9 @@ export default {
   }
 }
 </script>
-
-<style>
-
+<style lang="stylus" scoped>
+.search
+  .w
+    min-height 500px
+    background-color #F1F1F1
 </style>

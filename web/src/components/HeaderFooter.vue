@@ -35,7 +35,7 @@
           <input @input="input" type="text" v-model="query" placeholder="搜索商品" class="box" />
           <button class="btn" @click="searchQuery">搜索</button>
           <div class="suggest">
-            <div @click="$router.push(`/product-details/${item._id}`)" class="name" v-for="(item,index) in resultList" :key="index">{{item.name}}</div>
+            <div @click="suggest(item._id)" class="name" v-for="(item,index) in resultList" :key="index">{{item.name}}</div>
           </div>
         </div>
       </div>
@@ -221,10 +221,17 @@ export default {
   },
   methods: {
     searchQuery(){
+      
       if(!this.query.trim().length){
         return
       }
       this.$router.push(`/search/${this.query}`)
+      
+    },
+    suggest(id){
+      this.$router.push(`/product-details/${id}`)
+      this.query =""
+
     },
     async input() {
       //如果输入为空，则返回
@@ -575,6 +582,8 @@ export default {
         top 50px
         .suggest
           position absolute
+          background-color #fff
+          z-index 999
           top 35px
           left 0
           width 412px
