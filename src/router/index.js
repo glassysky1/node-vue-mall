@@ -21,53 +21,53 @@ const routes = [
     path: '/',
     name: 'name',
     component: Main,
-    children:[
+    children: [
       {
-        path:'/brands/create',
-        component:BrandEdit
+        path: '/brands/create',
+        component: BrandEdit
       },
       {
-        path:'/brands/edit/:id',
-        component:BrandEdit,
-        props:true
+        path: '/brands/edit/:id',
+        component: BrandEdit,
+        props: true
       },
       {
-        path:'/brands/list',
-        component:BrandList
+        path: '/brands/list',
+        component: BrandList
       },
       {
-        path:'/products/create',
-        component:ProductEdit
+        path: '/products/create',
+        component: ProductEdit
       },
       {
-        path:'/products/edit/:id',
-        component:ProductEdit,
-        props:true
+        path: '/products/edit/:id',
+        component: ProductEdit,
+        props: true
       },
       {
-        path:'/products/list',
-        component:ProductList
+        path: '/products/list',
+        component: ProductList
       },
       {
-        path:'/ads/create',
-        component:AdEdit
+        path: '/ads/create',
+        component: AdEdit
       },
       {
-        path:'/ads/edit/:id',
-        component:AdEdit,
-        props:true
+        path: '/ads/edit/:id',
+        component: AdEdit,
+        props: true
       },
       {
-        path:'/ads/list',
-        component:AdList
+        path: '/ads/list',
+        component: AdList
       },
       {
-        path:'/stocks/list',
-        component:StockList
+        path: '/stocks/list',
+        component: StockList
       },
       {
-        path:'/sales_volumes/list',
-        component:SalesVolumeList
+        path: '/sales_volumes/list',
+        component: SalesVolumeList
       },
       {
         path: '/admin_users/create',
@@ -87,19 +87,30 @@ const routes = [
         component: WebUserList
       },
       {
-        path:'/orders/list',
-        component:OrderList
+        path: '/orders/list',
+        component: OrderList
       }
     ],
   },
   {
     path: '/login',
-    component:Login
+    component: Login,
+    meta: { isPublic: true }
   }
 ]
 
 const router = new VueRouter({
   routes
+})
+
+//跳转路由之前要做什么
+//to去哪个页面，from来之哪个页面，next下一步是哪个
+router.beforeEach((to, from, next) => {
+  //如果没有isPublic
+  if (!to.meta.isPublic && !localStorage.token) {
+    return next('/login')
+  }
+  next() 
 })
 
 export default router

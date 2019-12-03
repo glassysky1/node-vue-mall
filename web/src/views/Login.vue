@@ -27,7 +27,6 @@
 <script>
 import _ from "lodash";
 import HeaderFooter from "../components/HeaderFooter";
-import MFooter from "../components/Footer";
 export default {
   data() {
     return {

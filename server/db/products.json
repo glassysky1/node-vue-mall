@@ -23,7 +23,7 @@
                 {
                     "_id" : ObjectId("5dd20392638ebd18686daff5"), 
                     "name" : "暗夜魅影", 
-                    "stock" : NumberInt(999), 
+                    "stock" : NumberInt(40), 
                     "salesVolume" : NumberInt(666)
                 }, 
                 {
@@ -35,7 +35,7 @@
                 {
                     "_id" : ObjectId("5dd20392638ebd18686daff3"), 
                     "name" : "冰雪极光", 
-                    "stock" : NumberInt(555), 
+                    "stock" : NumberInt(553), 
                     "salesVolume" : NumberInt(335)
                 }
             ], 
@@ -49,7 +49,7 @@
                 {
                     "_id" : ObjectId("5dd20392638ebd18686daff1"), 
                     "name" : "暗夜魅影", 
-                    "stock" : NumberInt(4546), 
+                    "stock" : NumberInt(4545), 
                     "salesVolume" : NumberInt(645)
                 }, 
                 {
@@ -102,7 +102,7 @@
     "coverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
     "detailImage" : "http://localhost:3000/uploads/dec46209f7a66968148e23d283d81e53", 
     "createdAt" : ISODate("2019-11-17T15:13:08.204+0000"), 
-    "updatedAt" : ISODate("2019-11-18T03:50:23.103+0000"), 
+    "updatedAt" : ISODate("2019-12-01T13:25:40.374+0000"), 
     "__v" : NumberInt(0), 
     "title" : "小米CC9 Pro", 
     "name" : "小米 CC9 Pro"
@@ -132,7 +132,7 @@
                 {
                     "_id" : ObjectId("5dd20bba35f41e63c0a09b56"), 
                     "name" : "梦之白", 
-                    "stock" : NumberInt(2556), 
+                    "stock" : NumberInt(2555), 
                     "salesVolume" : NumberInt(2326)
                 }, 
                 {
@@ -173,7 +173,7 @@
     "coverImage" : "http://localhost:3000/uploads/03737d112410955dbc71855e3a39568b", 
     "detailImage" : "http://localhost:3000/uploads/46b2609626857c7bfb769170dd0fdc13", 
     "createdAt" : ISODate("2019-11-18T03:10:50.112+0000"), 
-    "updatedAt" : ISODate("2019-11-20T03:09:32.932+0000"), 
+    "updatedAt" : ISODate("2019-12-01T12:06:39.747+0000"), 
     "__v" : NumberInt(0)
 }
 { 
@@ -201,7 +201,7 @@
                 {
                     "_id" : ObjectId("5dd20e0835f41e63c0a09b85"), 
                     "name" : "蜜丝白", 
-                    "stock" : NumberInt(12), 
+                    "stock" : NumberInt(10), 
                     "salesVolume" : NumberInt(10000)
                 }, 
                 {
@@ -228,7 +228,7 @@
     "coverImage" : "http://localhost:3000/uploads/9c80850bae0315185acf1ed941e0283f", 
     "detailImage" : "http://localhost:3000/uploads/5501595303d2ed24094fcc7b07505d73", 
     "createdAt" : ISODate("2019-11-18T03:20:40.816+0000"), 
-    "updatedAt" : ISODate("2019-11-18T09:01:23.492+0000"), 
+    "updatedAt" : ISODate("2019-12-01T12:55:11.138+0000"), 
     "__v" : NumberInt(0)
 }
 { 
@@ -347,14 +347,11 @@
         }, 
         {
             "_id" : ObjectId("5dd4c5b9d327dc5324b445a5"), 
-            "name" : "8GB+256GB", 
-            "oldPrice" : NumberInt(3199), 
-            "nowPrice" : NumberInt(3199), 
             "colors" : [
                 {
                     "_id" : ObjectId("5dd4c5b9d327dc5324b445a7"), 
                     "name" : "白色", 
-                    "stock" : NumberInt(2323), 
+                    "stock" : NumberInt(2319), 
                     "salesVolume" : NumberInt(1233)
                 }, 
                 {
@@ -363,13 +360,13 @@
                     "stock" : NumberInt(1232), 
                     "salesVolume" : NumberInt(2131)
                 }
-            ]
+            ], 
+            "name" : "8GB+256GB", 
+            "oldPrice" : NumberInt(3199), 
+            "nowPrice" : NumberInt(3199)
         }, 
         {
             "_id" : ObjectId("5dd4c5b9d327dc5324b445a3"), 
-            "name" : "12GB+256GB", 
-            "oldPrice" : NumberInt(3599), 
-            "nowPrice" : NumberInt(3599), 
             "colors" : [
                 {
                     "_id" : ObjectId("5dd4c5b9d327dc5324b445a4"), 
@@ -377,7 +374,10 @@
                     "stock" : NumberInt(1231), 
                     "salesVolume" : NumberInt(2223)
                 }
-            ]
+            ], 
+            "name" : "12GB+256GB", 
+            "oldPrice" : NumberInt(3599), 
+            "nowPrice" : NumberInt(3599)
         }
     ], 
     "brand" : ObjectId("5dccadfadc08e52fec69b30f"), 
@@ -386,7 +386,7 @@
     "coverImage" : "http://localhost:3000/uploads/278592f8715536f2b9af1fd73ab2b299", 
     "detailImage" : "http://localhost:3000/uploads/1e77710be89276c47dea6413493814ac", 
     "createdAt" : ISODate("2019-11-20T04:42:10.562+0000"), 
-    "updatedAt" : ISODate("2019-11-20T04:48:57.740+0000"), 
+    "updatedAt" : ISODate("2019-12-01T12:55:11.125+0000"), 
     "__v" : NumberInt(0)
 }
 { 
@@ -501,8 +501,8 @@
                 {
                     "_id" : ObjectId("5dd4cbffd327dc5324b445db"), 
                     "name" : "幻夜黑", 
-                    "stock" : NumberInt(2332), 
-                    "salesVolume" : NumberInt(1322)
+                    "stock" : NumberInt(2330), 
+                    "salesVolume" : NumberInt(1323)
                 }, 
                 {
                     "_id" : ObjectId("5dd4ce15d327dc5324b445e4"), 
@@ -525,9 +525,248 @@
     "brand" : ObjectId("5dca2148ab9393a5e0feeb12"), 
     "name" : "华为 HUAWEI nova 5z", 
     "createdAt" : ISODate("2019-11-20T05:15:43.179+0000"), 
-    "updatedAt" : ISODate("2019-11-20T05:24:37.369+0000"), 
+    "updatedAt" : ISODate("2019-12-01T13:28:25.482+0000"), 
     "__v" : NumberInt(0), 
     "coverImage" : "http://localhost:3000/uploads/e717bbed64a7dc89415e77a50bba23cd", 
     "detailImage" : "http://localhost:3000/uploads/e25a24443828d5c68ed734f77b65a88b", 
     "subtitle" : "麒麟810芯片 4800万AI四摄 3200万人像超级夜景 全网通双卡双待"
+}
+{ 
+    "_id" : ObjectId("5de4ae02fd77fb35442d698e"), 
+    "parameter" : {
+        "score" : NumberInt(8), 
+        "productionDate" : "2019-05-07T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "5.97", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "骁龙730", 
+        "ramSize" : "6GB", 
+        "ramType" : "LPDDR3", 
+        "romSize" : "64GB/128GB", 
+        "romType" : "UFS 2.1", 
+        "batteryCapacity" : "3070", 
+        "weight" : "155", 
+        "frontCamera" : "2000万像素", 
+        "rearCamera" : "4800万像素+800万像素+1300万像素"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5de4ae02fd77fb35442d698f"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5de4ae02fd77fb35442d6990"), 
+                    "name" : "幻彩栏", 
+                    "stock" : NumberInt(1321), 
+                    "salesVolume" : NumberInt(1235)
+                }, 
+                {
+                    "_id" : ObjectId("5de4af5dfd77fb35442d69a2"), 
+                    "name" : "深空灰", 
+                    "stock" : NumberInt(1213), 
+                    "salesVolume" : NumberInt(1233)
+                }
+            ], 
+            "name" : "6GB+64GB", 
+            "oldPrice" : NumberInt(1399), 
+            "nowPrice" : NumberInt(1399)
+        }, 
+        {
+            "_id" : ObjectId("5de4af5dfd77fb35442d699e"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5de4af5dfd77fb35442d69a0"), 
+                    "name" : "幻彩蓝", 
+                    "stock" : 0.1231, 
+                    "salesVolume" : NumberInt(1353)
+                }, 
+                {
+                    "_id" : ObjectId("5de4af5dfd77fb35442d699f"), 
+                    "name" : "深空灰", 
+                    "stock" : NumberInt(1231), 
+                    "salesVolume" : NumberInt(1231)
+                }
+            ], 
+            "name" : "6GB+128GB", 
+            "oldPrice" : NumberInt(1599), 
+            "nowPrice" : NumberInt(1599)
+        }, 
+        {
+            "_id" : ObjectId("5de4af5dfd77fb35442d699b"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5de4af5dfd77fb35442d699d"), 
+                    "name" : "幻彩蓝", 
+                    "stock" : NumberInt(2311), 
+                    "salesVolume" : NumberInt(1231)
+                }, 
+                {
+                    "_id" : ObjectId("5de4af5dfd77fb35442d699c"), 
+                    "name" : "深空灰", 
+                    "stock" : NumberInt(1231), 
+                    "salesVolume" : NumberInt(1231)
+                }
+            ], 
+            "name" : "8GB+128GB", 
+            "oldPrice" : NumberInt(1799), 
+            "nowPrice" : NumberInt(1799)
+        }
+    ], 
+    "brand" : ObjectId("5dca32bf47b5b9becc02ba56"), 
+    "name" : "小米9 SE", 
+    "subtitle" : "骁龙712 索尼4800万超广角三摄 5.97英寸舒适握感  游戏智能拍照手机", 
+    "createdAt" : ISODate("2019-12-02T06:24:02.353+0000"), 
+    "updatedAt" : ISODate("2019-12-02T06:34:36.072+0000"), 
+    "__v" : NumberInt(0), 
+    "coverImage" : "http://localhost:3000/uploads/7a9b1130a86b2a3369cbcabdc4a92b13", 
+    "detailImage" : "http://localhost:3000/uploads/ee1f4b1e0ae58126d42328bea21cf2d6"
+}
+{ 
+    "_id" : ObjectId("5de4b1aefd77fb35442d69c8"), 
+    "parameter" : {
+        "score" : NumberInt(9), 
+        "productionDate" : "2018-12-12T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.21", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "骁龙845", 
+        "ramSize" : "6GB", 
+        "ramType" : "LPDDR3", 
+        "romSize" : "64GB/128GB", 
+        "romType" : "UFS 2.1", 
+        "batteryCapacity" : "3000", 
+        "weight" : "175", 
+        "frontCamera" : "2000万像素", 
+        "rearCamera" : "1200万像素广角镜头+1200万像素长焦镜头"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5de4b1aefd77fb35442d69c9"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5de4b1aefd77fb35442d69ca"), 
+                    "name" : "黑", 
+                    "stock" : NumberInt(123), 
+                    "salesVolume" : NumberInt(2313)
+                }, 
+                {
+                    "_id" : ObjectId("5de4b23afd77fb35442d69d2"), 
+                    "name" : "金", 
+                    "stock" : NumberInt(1233), 
+                    "salesVolume" : NumberInt(2311)
+                }
+            ], 
+            "name" : "6GB+64GB", 
+            "oldPrice" : NumberInt(2499), 
+            "nowPrice" : NumberInt(2099)
+        }, 
+        {
+            "_id" : ObjectId("5de4b23afd77fb35442d69ce"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5de4b23afd77fb35442d69d0"), 
+                    "name" : "黑", 
+                    "stock" : NumberInt(2315), 
+                    "salesVolume" : NumberInt(1231)
+                }, 
+                {
+                    "_id" : ObjectId("5de4b23afd77fb35442d69cf"), 
+                    "name" : "金", 
+                    "stock" : NumberInt(1213), 
+                    "salesVolume" : NumberInt(1312)
+                }
+            ], 
+            "name" : "6GB+128GB", 
+            "oldPrice" : NumberInt(2699), 
+            "nowPrice" : NumberInt(2299)
+        }
+    ], 
+    "brand" : ObjectId("5dca32bf47b5b9becc02ba56"), 
+    "name" : "小米8", 
+    "subtitle" : "全面屏智能游戏手机 全网通4G 双卡双待", 
+    "coverImage" : "http://localhost:3000/uploads/08a0de433216a3b125c9f1c56f84a62a", 
+    "detailImage" : "http://localhost:3000/uploads/c44dfb0ac785c89c5739b0aaacd74378", 
+    "createdAt" : ISODate("2019-12-02T06:39:42.743+0000"), 
+    "updatedAt" : ISODate("2019-12-02T06:44:37.365+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5de4baf0fd77fb35442d69da"), 
+    "parameter" : {
+        "score" : NumberInt(9), 
+        "productionDate" : "2019-09-08T16:00:00.000Z", 
+        "screenMaterial" : "AMOLED", 
+        "screenSize" : "6.39", 
+        "screenRatio" : "2340x1080", 
+        "cpuType" : "骁龙730", 
+        "ramSize" : "6GB", 
+        "ramType" : "LPDDR3", 
+        "romSize" : "64GB/128GB", 
+        "romType" : "UFS 2.1", 
+        "batteryCapacity" : "4030", 
+        "weight" : "188", 
+        "frontCamera" : "3200万像素", 
+        "rearCamera" : "索尼4800万像素超高清镜头+800万像素超广角镜头+200万像素景深镜头"
+    }, 
+    "storages" : [
+        {
+            "_id" : ObjectId("5de4baf0fd77fb35442d69db"), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5de4baf0fd77fb35442d69dc"), 
+                    "name" : "白色恋人", 
+                    "stock" : NumberInt(1231), 
+                    "salesVolume" : NumberInt(1212)
+                }, 
+                {
+                    "_id" : ObjectId("5de4bc01fd77fb35442d69ef"), 
+                    "name" : "深蓝星球", 
+                    "stock" : NumberInt(1231), 
+                    "salesVolume" : NumberInt(1231)
+                }, 
+                {
+                    "_id" : ObjectId("5de4bc01fd77fb35442d69ee"), 
+                    "name" : "暗夜王子", 
+                    "stock" : NumberInt(1221), 
+                    "salesVolume" : NumberInt(1211)
+                }
+            ], 
+            "name" : "6GB+64GB", 
+            "oldPrice" : NumberInt(1499), 
+            "nowPrice" : NumberInt(1499)
+        }, 
+        {
+            "_id" : ObjectId("5de4bc01fd77fb35442d69e9"), 
+            "name" : "6GB+128GB", 
+            "oldPrice" : NumberInt(1699), 
+            "nowPrice" : NumberInt(1699), 
+            "colors" : [
+                {
+                    "_id" : ObjectId("5de4bc01fd77fb35442d69ec"), 
+                    "name" : "白色恋人", 
+                    "stock" : NumberInt(1215), 
+                    "salesVolume" : NumberInt(4545)
+                }, 
+                {
+                    "_id" : ObjectId("5de4bc01fd77fb35442d69eb"), 
+                    "name" : "深蓝星球", 
+                    "stock" : NumberInt(5455), 
+                    "salesVolume" : NumberInt(4544)
+                }, 
+                {
+                    "_id" : ObjectId("5de4bc01fd77fb35442d69ea"), 
+                    "name" : "仙女渐变色", 
+                    "stock" : NumberInt(1214), 
+                    "salesVolume" : NumberInt(1214)
+                }
+            ]
+        }
+    ], 
+    "brand" : ObjectId("5dca32bf47b5b9becc02ba56"), 
+    "name" : "小米CC9", 
+    "subtitle" : "小米CC9 3200万美颜自拍 索尼4800万超清三摄 多功能NFC 4030mAh 游戏智能拍照手机", 
+    "coverImage" : "http://localhost:3000/uploads/1335301f076a1b061274315eae0debbc", 
+    "detailImage" : "http://localhost:3000/uploads/0df353112ef5734856b378ea38bfbd6a", 
+    "createdAt" : ISODate("2019-12-02T07:19:12.514+0000"), 
+    "updatedAt" : ISODate("2019-12-02T07:23:45.184+0000"), 
+    "__v" : NumberInt(0)
 }

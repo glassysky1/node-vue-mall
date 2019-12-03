@@ -345,7 +345,7 @@ export default {
           type: "sucess",
           message: "退出成功"
         });
-        this._fetchUser();
+        this.$router.push('/login')
       });
     },
     async _fetchBrands() {

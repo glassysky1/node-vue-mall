@@ -1,7 +1,8 @@
 <template>
   <el-container style="height: 100vh;">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-menu router :default-openeds="['1']" unique-opened :default-active="$route.path">
+      <!-- :default-openeds="['1']" -->
+      <el-menu router  unique-opened :default-active="$route.path">
         <el-submenu index="1" >
           <template slot="title">
             <i class="el-icon-message"></i>商品管理
@@ -68,12 +69,10 @@
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>王小虎</span>
+        <span>{{user.username}}</span>
       </el-header>
 
       <el-main>
@@ -102,5 +101,33 @@
 
 <script>
 export default {
+  data(){
+    return{
+      user:{}
+    }
+  },
+  methods:{
+    logout(){
+       this.$confirm("确定退出吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        localStorage.token = "";
+        this.$message({
+          type: "sucess",
+          message: "退出成功"
+        });   
+        this.$router.push('/login')
+      });
+    },
+    async _fetchUser(){
+      const res = await this.$http.get('user')
+      this.user = res.data
+    }
+  },
+  created(){
+    this._fetchUser()
+  }
 };
 </script>

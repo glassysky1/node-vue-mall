@@ -1,18 +1,516 @@
 { 
-    "_id" : ObjectId("5dd53fccd327dc5324b445f0"), 
+    "_id" : ObjectId("5de11b1ae426e53120a06879"), 
     "username" : "xiaoyue", 
-    "password" : "$2a$10$Lr7fKfgYIiobsWP0luxHt.I.RYZPKSc6XF3dj0jJB.IBN9c6vLOyK", 
+    "password" : "$2a$10$hGE9nL5y5oteFsF9NbJzEuOWj41wYNQV1a3P7XUsfTGSOCjdRIoca", 
+    "addressList" : [
+        {
+            "_id" : ObjectId("5de11b67e426e53120a06882"), 
+            "username" : "戴肖", 
+            "city" : "江苏宿迁", 
+            "streetName" : "宿豫区黄墩镇柳湖村九组", 
+            "postCode" : NumberInt(223800), 
+            "tel" : 18361820796.0, 
+            "isDefault" : true
+        }
+    ], 
+    "cartList" : [
+        {
+            "_id" : ObjectId("5de5dfa067f9241bd4c70c74"), 
+            "productId" : "5dd33f9f98052b4004f6c9bb", 
+            "productName" : "Redmi Note8Pro", 
+            "productSubtitle" : "6400万全场景四摄 液冷游戏芯 4500mAh长续航 NFC 18W快充 红外遥控 游戏智能手机 小米 红米", 
+            "productPrice" : NumberInt(1299), 
+            "productCoverImage" : "http://localhost:3000/uploads/0364c39395b2f6c934c6bb48b9aff368", 
+            "productNum" : NumberInt(1), 
+            "productMaxNum" : NumberInt(2353), 
+            "storageId" : "5dd33f9f98052b4004f6c9bc", 
+            "storageName" : "6GB+64GB", 
+            "colorId" : "5dd33f9f98052b4004f6c9bd", 
+            "colorName" : "冰翡翠", 
+            "checked" : true
+        }, 
+        {
+            "_id" : ObjectId("5de5dfa567f9241bd4c70c75"), 
+            "productId" : "5dd33f9f98052b4004f6c9bb", 
+            "productName" : "Redmi Note8Pro", 
+            "productSubtitle" : "6400万全场景四摄 液冷游戏芯 4500mAh长续航 NFC 18W快充 红外遥控 游戏智能手机 小米 红米", 
+            "productPrice" : NumberInt(1299), 
+            "productCoverImage" : "http://localhost:3000/uploads/0364c39395b2f6c934c6bb48b9aff368", 
+            "productNum" : NumberInt(1), 
+            "productMaxNum" : NumberInt(14513), 
+            "storageId" : "5dd33f9f98052b4004f6c9bc", 
+            "storageName" : "6GB+64GB", 
+            "colorId" : "5dd3473198052b4004f6c9ce", 
+            "colorName" : "贝母白", 
+            "checked" : true
+        }
+    ], 
+    "orderList" : [
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3bfd9520971146ce84710", 
+                    "productId" : "5dd4cbffd327dc5324b445d9", 
+                    "productName" : "华为 HUAWEI nova 5z", 
+                    "productSubtitle" : "麒麟810芯片 4800万AI四摄 3200万人像超级夜景 全网通双卡双待", 
+                    "productPrice" : NumberInt(1599), 
+                    "productCoverImage" : "http://localhost:3000/uploads/e717bbed64a7dc89415e77a50bba23cd", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(2331), 
+                    "storageId" : "5dd4cbffd327dc5324b445da", 
+                    "storageName" : "6GB+64GB", 
+                    "colorId" : "5dd4cbffd327dc5324b445db", 
+                    "colorName" : "幻夜黑", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3bfe1520971146ce84715"), 
+            "address" : {
+                "_id" : "5de11b67e426e53120a06882", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "宿豫区黄墩镇柳湖村九组", 
+                "postCode" : NumberInt(223800), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(1599), 
+            "totalNumber" : NumberInt(1), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575206881527"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3bf71cff0883da01870a5", 
+                    "productId" : "5dd4cbffd327dc5324b445d9", 
+                    "productName" : "华为 HUAWEI nova 5z", 
+                    "productSubtitle" : "麒麟810芯片 4800万AI四摄 3200万人像超级夜景 全网通双卡双待", 
+                    "productPrice" : NumberInt(1599), 
+                    "productCoverImage" : "http://localhost:3000/uploads/e717bbed64a7dc89415e77a50bba23cd", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(2332), 
+                    "storageId" : "5dd4cbffd327dc5324b445da", 
+                    "storageName" : "6GB+64GB", 
+                    "colorId" : "5dd4cbffd327dc5324b445db", 
+                    "colorName" : "幻夜黑", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3bf7acff0883da01870a9"), 
+            "address" : {
+                "_id" : "5de11b67e426e53120a06882", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "宿豫区黄墩镇柳湖村九组", 
+                "postCode" : NumberInt(223800), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(1599), 
+            "totalNumber" : NumberInt(1), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575206778432"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3bf35cff0883da0187083", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(41), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff5", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }, 
+                {
+                    "_id" : "5de3bf3acff0883da0187084", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(3099), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(598), 
+                    "storageId" : "5dd20392638ebd18686dafee", 
+                    "storageName" : "8GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686dafef", 
+                    "colorName" : "冰雪极光", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3bf41cff0883da0187088"), 
+            "address" : {
+                "_id" : "5de11b67e426e53120a06882", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "宿豫区黄墩镇柳湖村九组", 
+                "postCode" : NumberInt(223800), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(5898), 
+            "totalNumber" : NumberInt(2), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575206721647"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de11b77e426e53120a06883", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(999), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff5", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de11b7ee426e53120a06885"), 
+            "address" : {
+                "_id" : "5de11b67e426e53120a06882", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "宿豫区黄墩镇柳湖村九组", 
+                "postCode" : NumberInt(223800), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(2), 
+            "totalPrice" : NumberInt(2799), 
+            "totalNumber" : NumberInt(1), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575033726685"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de11b2fe426e53120a0687a", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(999), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff5", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }, 
+                {
+                    "_id" : "5de11b33e426e53120a0687b", 
+                    "productId" : "5dd20e0835f41e63c0a09b83", 
+                    "productName" : "三星 Galaxy Note10+", 
+                    "productSubtitle" : "5G手机 骁龙855 智能S Pen 双卡双待 游戏手机", 
+                    "productPrice" : NumberInt(7999), 
+                    "productCoverImage" : "http://localhost:3000/uploads/9c80850bae0315185acf1ed941e0283f", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(12), 
+                    "storageId" : "5dd20e0835f41e63c0a09b84", 
+                    "storageName" : "12GB+256GB", 
+                    "colorId" : "5dd20e0835f41e63c0a09b85", 
+                    "colorName" : "蜜丝白", 
+                    "checked" : true
+                }, 
+                {
+                    "_id" : "5de11b36e426e53120a0687d", 
+                    "productId" : "5dd20bba35f41e63c0a09b54", 
+                    "productName" : "小米9 Pro 5G", 
+                    "productSubtitle" : "骁龙855Plus 30W无线闪充 双卡全网通 全面屏拍照智能新品游戏手机", 
+                    "productPrice" : NumberInt(3799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/03737d112410955dbc71855e3a39568b", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(2556), 
+                    "storageId" : "5dd20bba35f41e63c0a09b55", 
+                    "storageName" : "8GB+256GB", 
+                    "colorId" : "5dd20bba35f41e63c0a09b56", 
+                    "colorName" : "梦之白", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de11b67e426e53120a06881"), 
+            "address" : {
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "宿豫区黄墩镇柳湖村九组", 
+                "postCode" : "223800", 
+                "tel" : "18361820796", 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(14597), 
+            "totalNumber" : NumberInt(3), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575033703781"
+        }
+    ], 
     "__v" : NumberInt(0)
 }
 { 
-    "_id" : ObjectId("5dd5fc0d0a3e992dfc4cdb9d"), 
+    "_id" : ObjectId("5de3274e6be99d37c802434e"), 
     "username" : "xiaoyue1", 
-    "password" : "$2a$10$BwXbQ3JE0odiL26Krvnhi.sgwWoHT5KPuCODD20Fs0ywRNDUPCJnu", 
-    "__v" : NumberInt(0)
-}
-{ 
-    "_id" : ObjectId("5dd6014ad7d93a574405a992"), 
-    "username" : "xiaoyue2", 
-    "password" : "$2a$10$Bp1u23rtOoWMjIsKTaVOwuF2qkgxOaGz2HMhqMtCWGuligG1cH6qK", 
+    "password" : "$2a$10$LfSsKH58ujzjZwVm280ytujwIPvm9gWfdyk1c9ETJlbyB9PvzkfPO", 
+    "addressList" : [
+        {
+            "_id" : ObjectId("5de3ac1517256205f0307779"), 
+            "username" : "戴肖", 
+            "city" : "江苏宿迁", 
+            "streetName" : "黄墩镇柳湖村", 
+            "postCode" : NumberInt(382200), 
+            "tel" : 18361820796.0, 
+            "isDefault" : true
+        }
+    ], 
+    "cartList" : [
+
+    ], 
+    "orderList" : [
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3b7e409d73041201484dd", 
+                    "productId" : "5dd4c422d327dc5324b44597", 
+                    "productName" : "锤子(smartisan) 坚果Pro3", 
+                    "productSubtitle" : "骁龙855PLUS 4800万四摄 UFS3.0 全网通双卡双待 全面屏游戏手机", 
+                    "productPrice" : NumberInt(3199), 
+                    "productCoverImage" : "http://localhost:3000/uploads/278592f8715536f2b9af1fd73ab2b299", 
+                    "productNum" : NumberInt(2), 
+                    "productMaxNum" : NumberInt(2323), 
+                    "storageId" : "5dd4c5b9d327dc5324b445a5", 
+                    "storageName" : "8GB+256GB", 
+                    "colorId" : "5dd4c5b9d327dc5324b445a7", 
+                    "colorName" : "白色", 
+                    "checked" : true
+                }, 
+                {
+                    "_id" : "5de3b7eb09d73041201484de", 
+                    "productId" : "5dd20e0835f41e63c0a09b83", 
+                    "productName" : "三星 Galaxy Note10+", 
+                    "productSubtitle" : "5G手机 骁龙855 智能S Pen 双卡双待 游戏手机", 
+                    "productPrice" : NumberInt(7999), 
+                    "productCoverImage" : "http://localhost:3000/uploads/9c80850bae0315185acf1ed941e0283f", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(12), 
+                    "storageId" : "5dd20e0835f41e63c0a09b84", 
+                    "storageName" : "12GB+256GB", 
+                    "colorId" : "5dd20e0835f41e63c0a09b85", 
+                    "colorName" : "蜜丝白", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3b7f309d73041201484e4"), 
+            "address" : {
+                "_id" : "5de3ac1517256205f0307779", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "黄墩镇柳湖村", 
+                "postCode" : NumberInt(382200), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(2), 
+            "totalPrice" : NumberInt(14397), 
+            "totalNumber" : NumberInt(3), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575204851412"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3afac166ab424eca727ad", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(3), 
+                    "productMaxNum" : NumberInt(999), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff5", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3afb3166ab424eca727b1"), 
+            "address" : {
+                "_id" : "5de3ac1517256205f0307779", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "黄墩镇柳湖村", 
+                "postCode" : NumberInt(382200), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(8397), 
+            "totalNumber" : NumberInt(3), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575202739963"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3af6c9b7e5003eccbf2aa", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(3), 
+                    "productMaxNum" : NumberInt(999), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff5", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3af749b7e5003eccbf2ad"), 
+            "address" : {
+                "_id" : "5de3ac1517256205f0307779", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "黄墩镇柳湖村", 
+                "postCode" : NumberInt(382200), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(8397), 
+            "totalNumber" : NumberInt(3), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575202676036"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3ac9efceaa019ecb72978", 
+                    "productId" : "5dd20bba35f41e63c0a09b54", 
+                    "productName" : "小米9 Pro 5G", 
+                    "productSubtitle" : "骁龙855Plus 30W无线闪充 双卡全网通 全面屏拍照智能新品游戏手机", 
+                    "productPrice" : NumberInt(3799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/03737d112410955dbc71855e3a39568b", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(2556), 
+                    "storageId" : "5dd20bba35f41e63c0a09b55", 
+                    "storageName" : "8GB+256GB", 
+                    "colorId" : "5dd20bba35f41e63c0a09b56", 
+                    "colorName" : "梦之白", 
+                    "checked" : true
+                }, 
+                {
+                    "_id" : "5de3acb1fceaa019ecb72979", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(3), 
+                    "productMaxNum" : NumberInt(999), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff5", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }, 
+                {
+                    "_id" : "5de3acb4fceaa019ecb7297b", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(3099), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(4546), 
+                    "storageId" : "5dd20392638ebd18686dafee", 
+                    "storageName" : "8GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff1", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3acbafceaa019ecb7297f"), 
+            "address" : {
+                "_id" : "5de3ac1517256205f0307779", 
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "黄墩镇柳湖村", 
+                "postCode" : NumberInt(382200), 
+                "tel" : 18361820796.0, 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(15295), 
+            "totalNumber" : NumberInt(5), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575201978389"
+        }, 
+        {
+            "cartList" : [
+                {
+                    "_id" : "5de3275c6be99d37c802434f", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(1), 
+                    "productMaxNum" : NumberInt(999), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff5", 
+                    "colorName" : "暗夜魅影", 
+                    "checked" : true
+                }, 
+                {
+                    "_id" : "5de3275e6be99d37c8024350", 
+                    "productId" : "5dd163849e51cb6f1867b1d4", 
+                    "productName" : "小米 CC9 Pro", 
+                    "productSubtitle" : "1亿像素 五摄四闪 10倍混合光学变焦 5260mAh 屏下指纹 游戏智能拍照手机", 
+                    "productPrice" : NumberInt(2799), 
+                    "productCoverImage" : "http://localhost:3000/uploads/5dfbf48e174c5c41a0b42dacac51ef64", 
+                    "productNum" : NumberInt(2), 
+                    "productMaxNum" : NumberInt(555), 
+                    "storageId" : "5dd20392638ebd18686daff2", 
+                    "storageName" : "6GB+128GB", 
+                    "colorId" : "5dd20392638ebd18686daff3", 
+                    "colorName" : "冰雪极光", 
+                    "checked" : true
+                }
+            ], 
+            "_id" : ObjectId("5de3ac1517256205f0307778"), 
+            "address" : {
+                "username" : "戴肖", 
+                "city" : "江苏宿迁", 
+                "streetName" : "黄墩镇柳湖村", 
+                "postCode" : "382200", 
+                "tel" : "18361820796", 
+                "isDefault" : true
+            }, 
+            "status" : NumberInt(1), 
+            "totalPrice" : NumberInt(8397), 
+            "totalNumber" : NumberInt(3), 
+            "paymentMethod" : NumberInt(0), 
+            "createTime" : "1575201813254"
+        }
+    ], 
     "__v" : NumberInt(0)
 }

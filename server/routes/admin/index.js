@@ -1,6 +1,10 @@
 module.exports = app => {
   const express = require('express')
   const assert = require('http-assert')
+  //登录校验中间件
+  const authMiddleware = require('../../middleware/auth')
+  //资源中间件
+  const resourceMiddleware = require('../../middleware/resource')
   const router = express.Router(
     {
       mergeParams: true
@@ -43,14 +47,39 @@ module.exports = app => {
         success: 'true'
       })
     })
+
+  const options = {
+    modelName: 'AdminUser'
+  }
   //通用接口
-  app.use('/admin/api/rest/:resource', async (req, res, next) => {
-    //复数转单数
-    const modelName = require('inflection').classify(req.params.resource)
-    //请求对象上挂载一个属性
-    req.Model = require(`../../models/${modelName}`)
-    next()
-  }, router)
+  app.use('/admin/api/rest/:resource', authMiddleware(options), resourceMiddleware(), router)
+
+  const AdminUser = require('../../models/AdminUser')
+  //登陆接口
+  app.post('/admin/api/login', async (req, res) => {
+    const { username, password } = req.body
+    const user = await AdminUser.findOne({ username }).select('+password')
+    assert(user, 422, '用户名不存在')
+    //校验密码
+    const isValid = require('bcryptjs').compareSync(password, user.password)
+
+    //如果密码不对
+    assert(isValid, 422, '密码错误')
+    //返回token
+    const jwt = require('jsonwebtoken')
+    const token = jwt.sign({ id: user._id }, app.get('secret'))
+    res.send({ token })
+  })
+  //获取用户状态
+  app.get('/admin/api/user', authMiddleware(options), async (req, res) => {
+    if (req.user) {
+      res.send(req.user)
+      return
+    }
+    res.send({})
+  })
+
+
 
   //multer上传文件数据
   const multer = require('multer')
@@ -174,8 +203,6 @@ module.exports = app => {
   //错误处理函数
   app.use(async (err, req, res, next) => {
     //没有状态码就报500错误
-    console.log(1);
-
     res.status(err.statusCode || 500).send({
       message: err.message
     })
