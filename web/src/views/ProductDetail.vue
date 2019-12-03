@@ -203,7 +203,7 @@
                 </el-col>
               </el-row>
             </el-tab-pane>
-            <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+            <!-- <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane> -->
           </el-tabs>
         </div>
       </div>
