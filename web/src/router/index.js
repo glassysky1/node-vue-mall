@@ -16,24 +16,30 @@ const routes = [
   {
     path: '/',
     component: Home,
+    meta:{isPublic:true}
   },
   {
     path: '/product-details/:id',
     component: ProductDetail,
-    props: true
+    props: true,
+    meta:{isPublic:true}
   },
   {
     path: '/search/:query',
     component: Search,
-    props: true
+    props: true,
+    meta:{isPublic:true}
   },
   {
     path: '/register',
-    component: Register
+    component: Register,
+    meta:{isPublic:true}
+
   },
   {
     path:'/login',
-    component:Login
+    component:Login,
+    meta:{isPublic:true}
   },
   {
     path:'/personal-center',
@@ -63,4 +69,10 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to,from,next) =>{
+  if(!to.meta.isPublic && !localStorage.token){
+    return next('/login')
+  }
+  next()
+})
 export default router

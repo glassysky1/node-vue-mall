@@ -274,6 +274,10 @@ export default {
       console.log(tab, event);
     },
     async addToCartList() {
+      if(!localStorage.token){
+        this.$router.push('/login')
+        return
+      }
       let cart = {
         productId: this.productId,
         productName: this.productName,

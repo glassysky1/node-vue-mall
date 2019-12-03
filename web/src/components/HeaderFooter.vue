@@ -226,7 +226,7 @@ export default {
   },
   methods: {
     searchQuery() {
-      if (!this.query.trim().length) {
+      if (!this.query.trim()) {
         return;
       }
       this.resultList=[]
@@ -238,7 +238,7 @@ export default {
     },
     async input() {
       //如果输入为空，则返回
-      if (!this.query.trim().length) {
+      if (!this.query.trim()) {
         this.resultList = [];
         return;
       }
@@ -356,7 +356,7 @@ export default {
       const res = await this.$http.get("user");
 
       this.user = res.data;
-      if (!this.user._id.length) {
+      if (!this.user._id) {
         return;
       }
       this.cartList = res.data.cartList;
