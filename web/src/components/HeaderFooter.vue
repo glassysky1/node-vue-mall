@@ -18,8 +18,8 @@
             <a style="margin-right:2px;" @click="$router.push('/login')">你好,请登录&nbsp;</a>
             <a class="col-red" @click="$router.push('/register')">免费注册</a>
           </li>
-          <li class="space"></li>
-          <li @click="$router.push('/personal-center/order-list')">
+          <li v-if="user.username" class="space"></li>
+          <li v-if="user.username" @click="$router.push('/personal-center/order-list')">
             <a>我的订单</a>
           </li>
         </ul>
@@ -32,7 +32,7 @@
           <span class="title">{{title}}</span>
         </h1>
         <div class="search" v-show="navShow">
-          <input @input="input" type="text" v-model="query" placeholder="搜索商品" class="box" />
+          <input @input="input" @keyup.enter="searchQuery" type="text" v-model="query" placeholder="搜索商品" class="box" />
           <button class="btn" @click="searchQuery">搜索</button>
           <div class="suggest">
             <div
@@ -578,7 +578,7 @@ export default {
         height 120px
         margin-top 10px
         display block
-        background url('../assets/logo.jpg')
+        background url('../assets/logo.png')
         background-size contain
         border-radius 50%
         .title

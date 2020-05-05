@@ -123,6 +123,7 @@ export default {
     },
     async _fetchUser(){
       const res = await this.$http.get('user')
+      console.log(res.data)
       this.user = res.data
     }
   },

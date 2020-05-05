@@ -65,6 +65,11 @@ export default {
                 callback();
                 return;
               }
+              if(value.length<6 || value.length>16){
+                callback(new Error('用户名长度不低于6位且不高于16位'))
+              }else{
+                callback()
+              }
               for (const username of this.usernames) {
                 if (this.ruleForm.name === username) {
                   callback(new Error("用户名已存在"));

@@ -34,7 +34,7 @@ export default {
     },
     async remove(row) {
       //加提示框
-      this.$confirm(`是否确定删除品牌"${row.name}"?`, "提示", {
+      this.$confirm(`是否确定删除管理员"${row.username}"?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"

@@ -1,7 +1,9 @@
 <template>
   <div class="main">
     <h2>各品牌销量</h2>
+    <div class="bar">
     <chart :options="bar" />
+    </div>
   </div>
 </template>
 
@@ -21,6 +23,7 @@
 import ECharts from "vue-echarts";
 import "echarts/lib/chart/line";
 import "echarts/lib/chart/bar";
+import { graphic } from "echarts/lib/export";
 export default {
   components: {
     chart: ECharts
@@ -40,7 +43,19 @@ export default {
         },
         xAxis: { type: "category" },
         yAxis: {},
-        series: [{ type: "bar" }]
+        series: [{ type: "bar"   ,itemStyle: {
+        // color: '#1F5FF0'
+        color: new graphic.LinearGradient(0, 0, 0, 1, [
+          {
+            offset: 0,
+            color: '#00F3FF'
+          },
+          {
+            offset: 1,
+            color: '#1F5FF0'
+          }
+        ])
+      }, }]
       };
     }
   },
@@ -81,4 +96,7 @@ export default {
 .main
   width 100%
   height 80%
+  .bar
+    width 50%
+    height 50%
 </style>

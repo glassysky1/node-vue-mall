@@ -34,6 +34,8 @@
         </template>
       </el-table-column>
       <el-table-column prop="_id" label="订单编号" width="230"></el-table-column>
+      <el-table-column prop="address.username" label="收货人" width="230"></el-table-column>
+      <el-table-column prop="address.tel" label="联系方式" width="230"></el-table-column>
       <el-table-column label="支付方式">
         <template v-slot="scope">{{scope.row.paymentMethod===0?'在线支付':'货到付款'}}</template>
       </el-table-column>
@@ -80,6 +82,7 @@ export default {
     async _fetch() {
       const res = await this.$http.get("orderList");
       this.items = res.data;
+      console.log(this.items)
     }
   },
   created() {

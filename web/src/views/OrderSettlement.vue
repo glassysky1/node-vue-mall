@@ -1,33 +1,47 @@
 <template>
   <div class="order-settlement">
-    <header-footer title="订单结算" :slideShow="slideShow" :navShow="navShow">
+    <header-footer title="订单结算(支付宝沙箱支付，周日中午12点到周一中午12点是无法使用的)" :slideShow="slideShow" :navShow="navShow">
       <div class="w">
         <div class="select-address">
           <h2 class="title">收件人信息</h2>
           <a class="add-address" @click="addAddress">新增收货地址</a>
           <div ref="addressList" class="address-list">
-            <div class="address-item" v-for="(address,index) in addressList" :key="index">
+            <div
+              class="address-item"
+              v-for="(address, index) in addressList"
+              :key="index"
+            >
               <span
                 @click="firstselect(index)"
                 class="username"
-                :class="{'active':index ===0}"
-              >{{address.username}}</span>
-              <span
-                class="desc"
-              >{{address.username}} {{address.city}} {{address.streetName}} {{address.tel}} {{address.postCode}}</span>
+                :class="{ active: index === 0 }"
+                >{{ address.username }}</span
+              >
+              <span class="desc"
+                >{{ address.username }} {{ address.city }}
+                {{ address.streetName }} {{ address.tel }}
+                {{ address.postCode }}</span
+              >
               <span class="default" v-show="address.isDefault">默认地址</span>
               <span class="right">
                 <span
                   class="setDefault"
                   @click="setDefault(index)"
                   v-show="!address.isDefault"
-                >设为默认地址</span>
-                <span class="edit" @click="editAddress(address,index)">编辑</span>
+                  >设为默认地址</span
+                >
+                <span class="edit" @click="editAddress(address, index)"
+                  >编辑</span
+                >
                 <span class="delete" @click="deleteAddress(index)">删除</span>
               </span>
             </div>
           </div>
-          <div v-show="!moreFlag" style="padding-left:35px" class="more-address">
+          <div
+            v-show="!moreFlag"
+            style="padding-left:35px"
+            class="more-address"
+          >
             <a @click="more">更多地址</a>
             <i class="el-icon-arrow-down"></i>
           </div>
@@ -41,14 +55,16 @@
           <div class="payment-list">
             <span
               class="payment-item"
-              @click="paymentMethod =0"
-              :class="{'active':paymentMethod===0}"
-            >在线支付</span>
+              @click="paymentMethod = 0"
+              :class="{ active: paymentMethod === 0 }"
+              >在线支付</span
+            >
             <span
               class="payment-item"
-              @click="paymentMethod =1"
-              :class="{'active':paymentMethod===1}"
-            >货到付款</span>
+              @click="paymentMethod = 1"
+              :class="{ active: paymentMethod === 1 }"
+              >货到付款</span
+            >
           </div>
         </div>
         <div class="order">
@@ -63,7 +79,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(cart,index) in selectCartList" :key="index">
+              <tr v-for="(cart, index) in selectCartList" :key="index">
                 <td class="al">
                   <div class="image">
                     <a>
@@ -72,22 +88,24 @@
                   </div>
                   <div class="center">
                     <h2 class="desc-title" style="height:40px">
-                      <a>{{cart.productName}} {{cart.productSubtitle}}</a>
+                      <a>{{ cart.productName }} {{ cart.productSubtitle }}</a>
                     </h2>
                   </div>
                   <div class="right">
-                    <div class="storage">{{cart.storageName}}</div>
-                    <div class="color">{{cart.colorName}}</div>
+                    <div class="storage">{{ cart.storageName }}</div>
+                    <div class="color">{{ cart.colorName }}</div>
                   </div>
                 </td>
                 <td>
-                  <span class="price">￥{{cart.productPrice}}</span>
+                  <span class="price">￥{{ cart.productPrice }}</span>
                 </td>
                 <td>
-                  <span class="count">{{cart.productNum}}</span>
+                  <span class="count">{{ cart.productNum }}</span>
                 </td>
                 <td>
-                  <span class="total-price">￥{{cart.productPrice * cart.productNum}}</span>
+                  <span class="total-price"
+                    >￥{{ cart.productPrice * cart.productNum }}</span
+                  >
                 </td>
               </tr>
             </tbody>
@@ -98,20 +116,28 @@
             <div class="top">
               <span class="selected-num">
                 一共
-                <i>{{selectCount}}</i>件商品
+                <i>{{ selectCount }}</i
+                >件商品
               </span>
               <span class="total-price">
                 总价:
-                <span class="text">￥{{selectTotalProductPrice}}</span>
+                <span class="text">￥{{ selectTotalProductPrice }}</span>
               </span>
             </div>
             <div class="address fr" v-if="addressList.length">
               寄送至:
-              <span class="desc">{{addressList[0].city}} {{addressList[0].streetName}}</span> 收货人:
-              <span class="username">{{addressList[0].username}} {{addressList[0].tel}}</span>
+              <span class="desc"
+                >{{ addressList[0].city }} {{ addressList[0].streetName }}</span
+              >
+              收货人:
+              <span class="username"
+                >{{ addressList[0].username }} {{ addressList[0].tel }}</span
+              >
             </div>
             <div class="submit">
-              <button class="btn fr" @click="submitOrder">{{paymentMethod===0?'提交订单':'货到付款'}}</button>
+              <button class="btn fr" @click="submitOrder">
+                {{ paymentMethod === 0 ? "提交订单" : "货到付款" }}
+              </button>
             </div>
           </div>
         </div>
@@ -140,10 +166,18 @@
                 <el-input v-model="ruleForm.streetName"></el-input>
               </el-form-item>
               <el-form-item label="邮编" prop="postCode">
-                <el-input v-model="ruleForm.postCode" type="number" maxlength="6"></el-input>
+                <el-input
+                  v-model="ruleForm.postCode"
+                  type="number"
+                  maxlength="6"
+                ></el-input>
               </el-form-item>
               <el-form-item label="手机号码" prop="tel">
-                <el-input v-model="ruleForm.tel" type="number" maxlength="11"></el-input>
+                <el-input
+                  v-model="ruleForm.tel"
+                  type="number"
+                  maxlength="11"
+                ></el-input>
               </el-form-item>
               <el-form-item label="设为默认" prop="isDefault">
                 <el-switch v-model="ruleForm.isDefault"></el-switch>
@@ -162,7 +196,6 @@
 <script>
 import HeaderFooter from "../components/HeaderFooter";
 export default {
-  
   data() {
     return {
       editIndex: "",
@@ -357,13 +390,14 @@ export default {
       this._fetchUser();
     },
     async submitOrder() {
-      if(!this.addressList.length){
-          this.$message({
-        type: "waring",
-        message: "请添加地址"
-      });
-        return
+      if (!this.addressList.length) {
+        this.$message({
+          type: "waring",
+          message: "请添加地址"
+        });
+        return;
       }
+
       this.orderList.unshift({
         address: this.addressList[0],
         cartList: this.selectCartList,
@@ -371,13 +405,10 @@ export default {
         totalPrice: this.selectTotalProductPrice,
         totalNumber: this.selectCount,
         paymentMethod: this.paymentMethod,
-        createTime:Date.now()
+        createTime: Date.now()
       });
       await this.$http.put("orderList", this.orderList);
-      this.$message({
-        type: "success",
-        message: "购买成功"
-      });
+
       //把用户购物车里面已勾选的全删除
       let unSelectCartList = [];
       this.cartList.forEach((cart, index) => {
@@ -396,7 +427,18 @@ export default {
       let defaultAddress = this.addressList.splice(defaultIndex, 1);
       this.addressList.unshift(defaultAddress[0]);
       await this.$http.put("addressList", this.addressList);
-      this.$router.push('/')
+
+      //若果是在线
+      if (this.paymentMethod === 0) {
+        console.log(22);
+        const res = await this.$http.post("pay", {
+          totalPrice: this.selectTotalProductPrice
+        });
+        console.log(res.data.result);
+        window.location.href = res.data.result;
+      } else{
+        this.$router.push('/')
+      }
     },
     async _fetchUser() {
       const res = await this.$http.get("user");

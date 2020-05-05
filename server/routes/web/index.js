@@ -1,11 +1,16 @@
 module.exports = app => {
   const assert = require('http-assert')
   const express = require('express')
+  const fs = require('fs');
+  const path = require('path');
   const WebUser = require('../../models/WebUser')
   //登录校验中间件
   const authMiddleware = require('../../middleware/auth')
   //资源中间件
   const resourceMiddleware = require('../../middleware/resource')
+  const AlipaySDK = require("alipay-sdk").default;
+  const AlipayFormData = require("alipay-sdk/lib/form").default;
+
   const router = express.Router(
     {
       mergeParams: true
@@ -129,7 +134,7 @@ module.exports = app => {
     const model = await Product.find({
       name: new RegExp(req.body.query)
     })
-    res.send(model.slice(0,6))
+    res.send(model.slice(0, 6))
   })
   //错误处理函数
   app.use(async (err, req, res, next) => {
@@ -138,4 +143,56 @@ module.exports = app => {
       message: err.message
     })
   })
+
+  //支付
+  app.post('/web/api/pay', async (req, res) => {
+    
+    const alipaySdk = new AlipaySDK({
+      appId: "2016102400750716", // 你自己的沙箱黄环境的appId
+      privateKey: fs.readFileSync(
+        path.join(__dirname, "../../pem/private_key.pem"),
+        "ascii"
+      ), // 私钥
+      signType: "RSA2", // 签名类型
+      alipayPublicKey: fs.readFileSync(
+        path.join(__dirname, "../../pem/alipay_public_key.pem"),
+        "ascii"
+      ), // 支付宝公钥（不是应用公钥）
+      gateway: "https://openapi.alipaydev.com/gateway.do", // 网关地址
+      timeout: 5000, // 网关超时时间
+      camelcase: true // 是否把网关返回的下划线 key 转换为驼峰写法
+    });
+    /**
+     * 返回支付链接（PC支付接口）
+     */
+    const formData = new AlipayFormData();
+    formData.setMethod("get");
+    formData.addField("appId", "2016102400750716");
+    formData.addField("charset", "utf-8");
+    formData.addField("signType", "RSA2");
+    formData.addField('returnUrl', 'http://127.0.0.1:8080/#/personal-center/order-list')
+    formData.addField("bizContent", {
+      outTradeNo: Date.now(),// 【必选】商户订单号：64个字符内，包含数字，字母，下划线；需要保证在商户端不重复
+      productCode: "FAST_INSTANT_TRADE_PAY",// 【必选】销售产品码，目前仅支持FAST_INSTANT_TRADE_PAY
+      totalAmount: req.body.totalPrice+'.00',// 【必选】订单总金额，精确到小数点后两位
+      subject: "手机商品",// 【必选】 订单标题
+      body: "手机商品" // 【可选】订单描述
+    });
+    /**
+     * exec对应参数：
+     * method（调用支付宝api）
+     * params（api请求的参数（包含“公共请求参数”和“业务参数”））
+     * options（validateSign，formData，log）
+     */
+
+    const result = await alipaySdk.exec(
+      "alipay.trade.page.pay",
+      {},
+      { formData }
+    );
+    res.send({status:200,info:'查询成功',result})
+  }
+
+  )
 }
+
